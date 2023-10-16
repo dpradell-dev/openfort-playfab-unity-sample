@@ -1,74 +1,76 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import Openfort from "@openfort/openfort-node";
 
-const openfort = new Openfort(process.env.OPENFORT_API_KEY);
+const OPENFORT_API_KEY = process.env.OPENFORT_API_KEY;
+const CHAIN_ID = 80001; //Mumbai
+
+if (!OPENFORT_API_KEY) {
+    throw new Error("OPENFORT_API_KEY not set in environment variables.");
+}
+
+const openfort = new Openfort(OPENFORT_API_KEY);
 
 const httpTrigger: AzureFunction = async function (
   context: Context,
   req: HttpRequest
 ): Promise<void> {
-  try {
-    if (
-      !req.body ||
-      !req.body.CallerEntityProfile.Lineage.MasterPlayerAccountId
-    ) {
-      context.res = {
-        status: 400,
-        body: "Please pass a valid request body",
-      };
-      return;
+    try {
+        validateRequestBody(req);
+
+        context.log("Creating player in Openfort...");
+        const OFplayer = await createOpenfortPlayer(req.body.CallerEntityProfile.Lineage.MasterPlayerAccountId);
+
+        context.log("Creating account in Openfort...");
+        const OFaccount = await createOpenfortAccount(OFplayer.id);
+
+        context.res = buildSuccessResponse(OFaccount);
+    } catch (error) {
+        context.log(error);
+        context.res = {
+            status: 500,
+            body: JSON.stringify(error),
+        };
     }
-
-    context.log("HTTP trigger function processed a request.");
-
-    const OFplayer = await openfort.players
-      .create({
-        name: req.body.CallerEntityProfile.Lineage.MasterPlayerAccountId,
-      })
-      .catch((error) => {
-        context.log(error);
-        context.res = {
-          status: 500,
-          body: JSON.stringify(error),
-        };
-        return;
-      });
-    if (!OFplayer) return;
-
-    const OFaccount = await openfort.accounts
-      .create({
-        player: OFplayer.id,
-        chainId: 4337,
-      })
-      .catch((error) => {
-        context.log(error);
-        context.res = {
-          status: 500,
-          body: JSON.stringify(error),
-        };
-        return;
-      });
-
-    if (!OFaccount) return;
-
-    context.log("API call was successful.");
-    context.res = {
-      status: 200,
-      body: JSON.stringify({
-        address: OFaccount.address,
-        short_address:
-          OFaccount.address?.substr(0, 5) +
-          "..." +
-          OFaccount.address?.substr(-4),
-      }),
-    };
-  } catch (error) {
-    context.log(error);
-    context.res = {
-      status: 500,
-      body: JSON.stringify(error),
-    };
-  }
 };
+
+function validateRequestBody(req: HttpRequest): void {
+    if (!req.body || !req.body.CallerEntityProfile.Lineage.MasterPlayerAccountId) {
+        throw new Error("Please pass a valid request body");
+    }
+}
+
+async function createOpenfortPlayer(masterPlayerAccountId: string) {
+  const OFplayer = await openfort.players.create({ name: masterPlayerAccountId });
+  
+  if (!OFplayer) {
+      throw new Error("Failed to create Openfort player.");
+  }
+  return OFplayer;
+}
+
+async function createOpenfortAccount(playerId: string) {
+  const OFaccount = await openfort.accounts.create({
+      player: playerId,
+      chainId: CHAIN_ID,
+  });
+
+  if (!OFaccount) {
+      throw new Error("Failed to create Openfort account.");
+  }
+  return OFaccount;
+}
+
+function buildSuccessResponse(OFaccount: any) {
+    const address = OFaccount.address;
+    const short_address = `${address?.substr(0, 5)}...${address?.substr(-4)}`;
+
+    return {
+        status: 200,
+        body: JSON.stringify({
+            address,
+            short_address
+        })
+    };
+}
 
 export default httpTrigger;
