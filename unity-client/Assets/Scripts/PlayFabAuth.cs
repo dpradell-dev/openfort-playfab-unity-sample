@@ -2,6 +2,7 @@ using PlayFab;
 using PlayFab.ClientModels;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class PlayFabAuth : MonoBehaviour
 {
@@ -19,6 +20,10 @@ public class PlayFabAuth : MonoBehaviour
     
     [Header("Other")]
     public TextMeshProUGUI statusText;
+
+    [Header("Events")]
+    public UnityEvent OnLoginSuccess;
+    public UnityEvent OnRegisterSuccess;
 
     #region PUBLIC_METHODS
     public void LoginUser()
@@ -54,13 +59,14 @@ public class PlayFabAuth : MonoBehaviour
     #region CALLBACK_HANDLERS
     void LoginSuccess(LoginResult result)
     {
-        //TODO Other stuff - mint - etc.
         Debug.Log("Successfully logged in!");
+        OnLoginSuccess?.Invoke();
     }
     void RegisterSuccess(RegisterPlayFabUserResult result)
     {
-        //TODO Create Openfort Player
         Debug.Log("Successfully registered user!");
+        OnRegisterSuccess?.Invoke();
+        //TODO create openfort player in OpenfortController
     }
 
     void OnError(PlayFabError error)

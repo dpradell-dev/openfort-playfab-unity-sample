@@ -741,6 +741,50 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 219996431}
   m_CullTransparentMesh: 1
+--- !u!1 &262115553
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 262115554}
+  - component: {fileID: 262115555}
+  m_Layer: 0
+  m_Name: OpenfortController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &262115554
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262115553}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &262115555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 262115553}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 484f40959b84f2047800ba694e780ed5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &314308439
 GameObject:
   m_ObjectHideFlags: 0
@@ -1660,6 +1704,24 @@ MonoBehaviour:
   rEmail: {fileID: 1528269151}
   rPassword: {fileID: 1632417434}
   statusText: {fileID: 1874908714}
+  OnLoginSuccess:
+    m_PersistentCalls:
+      m_Calls: []
+  OnRegisterSuccess:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 262115555}
+        m_TargetAssemblyTypeName: OpenfortController, Assembly-CSharp
+        m_MethodName: CreatePlayer
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &1033222850
 GameObject:
   m_ObjectHideFlags: 0
@@ -4045,5 +4107,6 @@ SceneRoots:
   m_Roots:
   - {fileID: 519420032}
   - {fileID: 963035687}
+  - {fileID: 262115554}
   - {fileID: 2014619684}
   - {fileID: 1821017012}
