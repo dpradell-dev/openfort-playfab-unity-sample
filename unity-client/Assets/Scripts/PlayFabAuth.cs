@@ -23,7 +23,6 @@ public class PlayFabAuth : MonoBehaviour
 
     [Header("Events")]
     public UnityEvent OnLoginSuccess;
-    public UnityEvent OnRegisterSuccess;
 
     #region PUBLIC_METHODS
     public void LoginUser()
@@ -65,8 +64,12 @@ public class PlayFabAuth : MonoBehaviour
     void RegisterSuccess(RegisterPlayFabUserResult result)
     {
         Debug.Log("Successfully registered user!");
-        OnRegisterSuccess?.Invoke();
-        //TODO create openfort player in OpenfortController
+        //OnRegisterSuccess?.Invoke();
+
+        lEmail.text = rEmail.text;
+        lPassword.text = rPassword.text;
+        
+        LoginUser();
     }
 
     void OnError(PlayFabError error)

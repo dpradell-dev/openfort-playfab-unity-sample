@@ -1706,9 +1706,6 @@ MonoBehaviour:
   statusText: {fileID: 1874908714}
   OnLoginSuccess:
     m_PersistentCalls:
-      m_Calls: []
-  OnRegisterSuccess:
-    m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 262115555}
         m_TargetAssemblyTypeName: OpenfortController, Assembly-CSharp
