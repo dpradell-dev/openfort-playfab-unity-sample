@@ -23,7 +23,7 @@ const httpTrigger: AzureFunction = async function (
         context.log("Creating account in Openfort...");
         const OFaccount = await createOpenfortAccount(OFplayer.id);
 
-        context.res = buildSuccessResponse(OFaccount);
+        context.res = buildSuccessResponse(OFplayer.id, OFaccount.address);
     } catch (error) {
         context.log(error);
         context.res = {
@@ -60,15 +60,15 @@ async function createOpenfortAccount(playerId: string) {
   return OFaccount;
 }
 
-function buildSuccessResponse(OFaccount: any) {
-    const address = OFaccount.address;
-    const short_address = `${address?.substr(0, 5)}...${address?.substr(-4)}`;
+function buildSuccessResponse(OFplayerId: string, OFaccountAddress: string) {
+    const playerId = OFplayerId;
+    const address = OFaccountAddress;
 
     return {
         status: 200,
         body: JSON.stringify({
-            address,
-            short_address
+            playerId,
+            address
         })
     };
 }

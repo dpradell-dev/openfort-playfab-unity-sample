@@ -4,6 +4,13 @@ using UnityEngine;
 
 public class OpenfortController : MonoBehaviour
 {
+    [System.Serializable]
+    public class OpenfortResponse
+    {
+        public string playerId;
+        public string address;
+    }
+
     public void CreatePlayer()
     {
         var request = new ExecuteFunctionRequest()
@@ -22,10 +29,11 @@ public class OpenfortController : MonoBehaviour
     
     private void OnCreatePlayerSuccess(ExecuteFunctionResult result)
     {
-        // Handle success
-        Debug.Log("Successfully called CreateOpenfortPlayer");
-        // If the function returns data, you can access it with:
-        // var returnedData = result.FunctionResult;
+        string json = result.FunctionResult.ToString();
+        OpenfortResponse response = JsonUtility.FromJson<OpenfortResponse>(json);
+
+        // Now you can use response.playerId and response.address
+        Debug.Log($"Player ID: {response.playerId}, Address: {response.address}");
     }
 
     private void OnCreatePlayerError(PlayFabError error)
