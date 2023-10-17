@@ -1,14 +1,14 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import Openfort from "@openfort/openfort-node";
 
-const OPENFORT_API_KEY = process.env.OPENFORT_API_KEY;
+const OF_API_KEY = process.env.OF_API_KEY;
 const CHAIN_ID = 80001; //Mumbai
 
-if (!OPENFORT_API_KEY) {
+if (!OF_API_KEY) {
     throw new Error("OPENFORT_API_KEY not set in environment variables.");
 }
 
-const openfort = new Openfort(OPENFORT_API_KEY);
+const openfort = new Openfort(OF_API_KEY);
 
 const httpTrigger: AzureFunction = async function (
   context: Context,
@@ -62,13 +62,13 @@ async function createOpenfortAccount(playerId: string) {
 
 function buildSuccessResponse(OFplayerId: string, OFaccountAddress: string) {
     const playerId = OFplayerId;
-    const address = OFaccountAddress;
+    const playerWalletAddress = OFaccountAddress;
 
     return {
         status: 200,
         body: JSON.stringify({
             playerId,
-            address
+            playerWalletAddress
         })
     };
 }

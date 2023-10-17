@@ -1,66 +1,79 @@
 import { AzureFunction, Context, HttpRequest } from "@azure/functions";
 import Openfort, {
-  CreateTransactionIntentRequest,
-  Interaction,
+    CreateTransactionIntentRequest,
+    Interaction
 } from "@openfort/openfort-node";
 
-const openfort = new Openfort(process.env.OPENFORT_API_KEY);
+const OF_API_KEY = process.env.OF_API_KEY;
 const CHAIN_ID = 80001; //Mumbai
+const OF_NFT_CONTRACT = process.env.OF_NFT_CONTRACT;
+const OF_SPONSOR_POLICY = process.env.OF_SPONSOR_POLICY;
+
+if (!OF_API_KEY || !OF_NFT_CONTRACT || !OF_SPONSOR_POLICY) {
+    throw new Error("Required environment variables are not set.");
+}
+
+const openfort = new Openfort(OF_API_KEY);
 
 const httpTrigger: AzureFunction = async function (
-  context: Context,
-  req: HttpRequest
+    context: Context,
+    req: HttpRequest
 ): Promise<void> {
-  try {
-    if (
-      !req.body ||
-      !req.body.CallerEntityProfile.Lineage.MasterPlayerAccountId ||
-      !req.body.FunctionArgument.playerId ||
-      !req.body.FunctionArgument.receiverAddress
-    ) {
-      context.res = {
-        status: 400,
-        body: "Please pass a valid request body",
-      };
-      return;
+    try {
+        validateRequestBody(req);
+
+        const { playerId, receiverAddress } = req.body.FunctionArgument;
+        const transactionIntent = await createTransactionIntent(playerId, receiverAddress);
+
+        context.res = buildSuccessResponse(transactionIntent.id);
+    } catch (error) {
+        context.log(error);
+        context.res = {
+            status: 500,
+            body: JSON.stringify(error),
+        };
     }
+};
 
-    const playerId = req.body.FunctionArgument.playerId;
-    const receiverAddress = req.body.FunctionArgument.receiverAddress;
+function validateRequestBody(req: HttpRequest): void {
+    if (!req.body || 
+        !req.body.CallerEntityProfile.Lineage.MasterPlayerAccountId ||
+        !req.body.FunctionArgument.playerId ||
+        !req.body.FunctionArgument.receiverAddress) {
+        throw new Error("Please pass a valid request body");
+    }
+}
 
-    const interaction_1: Interaction = {
-      contract: process.env.OF_NFT_CONTRACT,
-      functionName: "mint",
-      functionArgs: [receiverAddress],
+async function createTransactionIntent(playerId: string, receiverAddress: string): Promise<any> {
+    const interaction: Interaction = {
+        contract: OF_NFT_CONTRACT,
+        functionName: "mint",
+        functionArgs: [receiverAddress]
     };
 
     const transactionIntentRequest: CreateTransactionIntentRequest = {
-      player: playerId,
-      chainId: CHAIN_ID,
-      optimistic: false,
-      interactions: [interaction_1],
-      policy: process.env.OF_TX_SPONSOR,
+        player: playerId,
+        chainId: CHAIN_ID,
+        optimistic: false,
+        interactions: [interaction],
+        policy: OF_SPONSOR_POLICY
     };
-    const transactionIntent = await openfort.transactionIntents.create(
-      transactionIntentRequest
-    );
 
-    if (!transactionIntent) return;
+    const transactionIntent = await openfort.transactionIntents.create(transactionIntentRequest);
 
-    context.log("API call was successful.");
-    context.res = {
-      status: 200,
-      body: JSON.stringify({
-        id: transactionIntent.id
-      }),
+    if (!transactionIntent) {
+        throw new Error("Failed to create transaction intent.");
+    }
+    return transactionIntent;
+}
+
+function buildSuccessResponse(transactionIntentId: string) {
+    return {
+        status: 200,
+        body: JSON.stringify({
+            id: transactionIntentId
+        })
     };
-  } catch (error) {
-    context.log(error);
-    context.res = {
-      status: 500,
-      body: JSON.stringify(error),
-    };
-  }
-};
+}
 
 export default httpTrigger;

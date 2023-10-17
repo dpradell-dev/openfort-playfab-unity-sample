@@ -6,6 +6,7 @@ using UnityEngine.Events;
 
 public class PlayFabAuth : MonoBehaviour
 {
+    [Header("UI Panels")]
     public GameObject choosePanel;
     public GameObject loginPanel;
     public GameObject registerPanel;

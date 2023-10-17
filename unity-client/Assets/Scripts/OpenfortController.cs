@@ -5,11 +5,16 @@ using UnityEngine;
 public class OpenfortController : MonoBehaviour
 {
     [System.Serializable]
-    public class OpenfortResponse
+    public class CreatePlayerResponse
     {
         public string playerId;
-        public string address;
+        public string playerWalletAddress;
     }
+    
+    public GameObject mintPanel;
+    
+    private string _playerId;
+    private string _playerWalletAddress;
 
     public void CreatePlayer()
     {
@@ -30,10 +35,15 @@ public class OpenfortController : MonoBehaviour
     private void OnCreatePlayerSuccess(ExecuteFunctionResult result)
     {
         string json = result.FunctionResult.ToString();
-        OpenfortResponse response = JsonUtility.FromJson<OpenfortResponse>(json);
+        CreatePlayerResponse response = JsonUtility.FromJson<CreatePlayerResponse>(json);
 
         // Now you can use response.playerId and response.address
-        Debug.Log($"Player ID: {response.playerId}, Address: {response.address}");
+        Debug.Log($"Player ID: {response.playerId}, Player Wallet Address: {response.playerWalletAddress}");
+
+        _playerId = response.playerId;
+        _playerWalletAddress = response.playerWalletAddress;
+        
+        mintPanel.SetActive(true);
     }
 
     private void OnCreatePlayerError(PlayFabError error)
@@ -42,8 +52,35 @@ public class OpenfortController : MonoBehaviour
         Debug.LogError($"Failed to call CreateOpenfortPlayer: {error.GenerateErrorReport()}");
     }
 
-    public void ClaimSomething()
+    public void MintNFT()
     {
-        //TODO
+        if (string.IsNullOrEmpty(_playerId) || string.IsNullOrEmpty(_playerWalletAddress))
+        {
+            Debug.LogError("Player ID or Player Wallet Address is null or empty.");
+            return;
+        }
+        
+        var request = new ExecuteFunctionRequest
+        {
+            FunctionName = "MintNFT", // Your Azure function name
+            FunctionParameter = new
+            {
+                playerId = _playerId,
+                receiverAddress = _playerWalletAddress
+            },
+            GeneratePlayStreamEvent = true
+        };
+        
+        PlayFabCloudScriptAPI.ExecuteFunction(request, OnMintNftSuccess, OnMintNftError);
+    }
+
+    private void OnMintNftSuccess(ExecuteFunctionResult result)
+    {
+        Debug.Log("MINTED!");
+    }
+    
+    private void OnMintNftError(PlayFabError error)
+    {
+        Debug.Log(error);
     }
 }
