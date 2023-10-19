@@ -19,6 +19,8 @@ const httpTrigger: AzureFunction = async function (
 ): Promise<void> {
   try {
     context.log("Starting HTTP trigger function processing.");
+    
+    context.log("Request Body:", JSON.stringify(req.body));
 
     if (!isValidRequestBody(req.body)) {
       context.log("Invalid request body received.");
@@ -30,22 +32,29 @@ const httpTrigger: AzureFunction = async function (
     }
 
     const playerId = req.body.FunctionArgument.playerId;
+    context.log(`Valid request. Processing for playerId: ${playerId}`);
 
     async function getPlayerNftInventory(playerId: string) {
+      context.log(`Fetching NFT inventory for playerId: ${playerId}`);
       const inventory = await openfort.inventories.getPlayerNftInventory({ playerId: playerId, chainId: CHAIN_ID });
       
       if (!inventory) {
           throw new Error("Failed to retrieve inventory.");
       }
+      context.log(`Successfully retrieved NFT inventory for playerId: ${playerId}`);
       return inventory;
     }
 
     // Call the function to get the player's NFT inventory
     const inventoryResponse = await getPlayerNftInventory(playerId);
+    context.log("Inventory Response:", JSON.stringify(inventoryResponse));
 
     // Extract the 'data' section from the response
     const inventoryData = inventoryResponse.data;
+    context.log("Processed Inventory Data:", JSON.stringify(inventoryData));
 
+    context.log(`Sending inventory data response for playerId: ${playerId}`);
+    
     context.res = {
       status: 200,
       body: JSON.stringify(inventoryData),

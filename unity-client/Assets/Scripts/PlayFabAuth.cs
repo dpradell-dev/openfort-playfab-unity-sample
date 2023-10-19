@@ -29,6 +29,8 @@ public class PlayFabAuth : MonoBehaviour
     public void LoginUser()
     {
         if(!ValidateInput(lEmail.text, lEmail.text)) return;
+
+        statusText.text = "Logging in...";
         
         var loginRequest = new LoginWithEmailAddressRequest
         {
@@ -43,6 +45,8 @@ public class PlayFabAuth : MonoBehaviour
     public void RegisterUser()
     {
         if(!ValidateInput(rEmail.text, rPassword.text)) return;
+
+        statusText.text = "Registering user...";
         
         var registerRequest = new RegisterPlayFabUserRequest
         {
@@ -59,13 +63,15 @@ public class PlayFabAuth : MonoBehaviour
     #region CALLBACK_HANDLERS
     void LoginSuccess(LoginResult result)
     {
+        statusText.text = "Successfully logged in!";
         Debug.Log("Successfully logged in!");
         OnLoginSuccess?.Invoke();
     }
+    
     void RegisterSuccess(RegisterPlayFabUserResult result)
     {
+        statusText.text = "Successfully registered! Logging in...";
         Debug.Log("Successfully registered user!");
-        //OnRegisterSuccess?.Invoke();
 
         lEmail.text = rEmail.text;
         lPassword.text = rPassword.text;
@@ -75,6 +81,7 @@ public class PlayFabAuth : MonoBehaviour
 
     void OnError(PlayFabError error)
     {
+        statusText.text = $"Error: {error.ErrorMessage}";
         choosePanel.SetActive(true);
         Debug.LogError(error.GenerateErrorReport());
     }
@@ -85,12 +92,14 @@ public class PlayFabAuth : MonoBehaviour
     {
         if(string.IsNullOrEmpty(email) || !email.Contains("@"))
         {
+            statusText.text = "Invalid email address.";
             Debug.LogError("Invalid email address.");
             return false;
         }
 
         if(string.IsNullOrEmpty(pswd) || pswd.Length < 6)
         {
+            statusText.text = "Password must be at least 6 characters.";
             Debug.LogError("Password must be at least 6 characters.");
             return false;
         }
