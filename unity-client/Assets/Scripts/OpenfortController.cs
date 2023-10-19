@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Newtonsoft.Json;
 using PlayFab;
 using PlayFab.CloudScriptModels;
 using UnityEngine;
@@ -22,6 +24,22 @@ public class OpenfortController : MonoBehaviour
     {
         public bool minted;
         public string id;
+    }
+    
+    [System.Serializable]
+    public class NftItemList
+    {
+        public NftItem[] items;
+    }
+    
+    [System.Serializable]
+    public class NftItem
+    {
+        public string assetType;
+        public string amount;
+        public int tokenId;
+        public string address;
+        public long lastTransferredAt;
     }
 
     public GameObject mintPanel;
@@ -145,7 +163,6 @@ public class OpenfortController : MonoBehaviour
         GetTransactionIntent(responseObject.id);
     }
     
-    //TODO Get NFT?
     private void GetTransactionIntent(string transactionIntentId)
     {
         var request = new ExecuteFunctionRequest
@@ -167,9 +184,8 @@ public class OpenfortController : MonoBehaviour
         var responseObject = JsonUtility.FromJson<GetTransactionIntentResponse>(result.FunctionResult.ToString());
         if (responseObject.minted)
         {
-            // Do something if true
             Debug.Log("Minted is true");
-            //TODO DONE!!!!
+            GetPlayerNftInventory(_playerId);
         }
         else
         {
@@ -183,5 +199,36 @@ public class OpenfortController : MonoBehaviour
     {
         mintPanel.SetActive(true);
         Debug.LogWarning(error.GenerateErrorReport());
+    }
+    
+    private void GetPlayerNftInventory(string playerId)
+    {
+        var request = new ExecuteFunctionRequest
+        {
+            FunctionName = "GetPlayerNftInventory",
+            FunctionParameter = new
+            {
+                playerId
+            }
+        };
+
+        PlayFabCloudScriptAPI.ExecuteFunction(request, OnGetPlayerNftInventorySuccess, OnGetPlayerNftInventoryError);
+    }
+
+    private void OnGetPlayerNftInventoryError(PlayFabError error)
+    {
+        throw new System.NotImplementedException();
+    }
+
+    private void OnGetPlayerNftInventorySuccess(ExecuteFunctionResult result)
+    {
+        Debug.Log(result.FunctionResult);
+        var json = result.FunctionResult.ToString();
+        List<NftItem> itemList = JsonConvert.DeserializeObject<List<NftItem>>(json);
+
+        foreach (var item in itemList)
+        {
+            Debug.Log(item.tokenId);
+        }
     }
 }
