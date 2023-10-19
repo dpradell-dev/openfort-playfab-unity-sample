@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using PlayFab;
 using PlayFab.ClientModels;
 using PlayFab.CloudScriptModels;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
 using EntityKey = PlayFab.CloudScriptModels.EntityKey;
@@ -48,6 +49,7 @@ public class OpenfortController : MonoBehaviour
     public UnityEvent OnCreatePlayerErrorEvent;
 
     public GameObject mintPanel;
+    public TextMeshProUGUI statusText;
     
     private string _playerId;
     private string _playerWalletAddress;

@@ -946,6 +946,7 @@ MonoBehaviour:
           m_BoolArgument: 1
         m_CallState: 2
   mintPanel: {fileID: 2019007283}
+  statusText: {fileID: 1874908714}
 --- !u!1 &314308439
 GameObject:
   m_ObjectHideFlags: 0
