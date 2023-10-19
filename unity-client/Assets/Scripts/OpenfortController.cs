@@ -11,6 +11,19 @@ public class OpenfortController : MonoBehaviour
         public string playerWalletAddress;
     }
     
+    [System.Serializable]
+    public class FindTransactionIntentResponse
+    {
+        public string id;
+    }
+    
+    [System.Serializable]
+    private class GetTransactionIntentResponse
+    {
+        public bool minted;
+        public string id;
+    }
+
     public GameObject mintPanel;
     
     private string _playerId;
@@ -119,14 +132,56 @@ public class OpenfortController : MonoBehaviour
 
     private void OnFindTransactionIntentError(PlayFabError error)
     {
-        //TODO
-        Debug.Log(error);
+        mintPanel.SetActive(true);
+        Debug.LogWarning(error.GenerateErrorReport());
     }
 
     private void OnFindTransactionIntentSuccess(ExecuteFunctionResult result)
     {
         Debug.Log(result.FunctionResult);
+        var json = result.FunctionResult.ToString();
+        var responseObject = JsonUtility.FromJson<FindTransactionIntentResponse>(json);
         
-        //TODO GetTransactionIntent
+        GetTransactionIntent(responseObject.id);
+    }
+    
+    //TODO Get NFT?
+    private void GetTransactionIntent(string transactionIntentId)
+    {
+        var request = new ExecuteFunctionRequest
+        {
+            FunctionName = "GetTransactionIntent",
+            FunctionParameter = new
+            {
+                transactionIntentId = transactionIntentId
+            }
+        };
+
+        PlayFabCloudScriptAPI.ExecuteFunction(request, OnGetTransactionIntentSuccess, OnGetTransactionIntentError);
+    }
+
+    private void OnGetTransactionIntentSuccess(ExecuteFunctionResult result)
+    {
+        Debug.Log(result.FunctionResult);
+        
+        var responseObject = JsonUtility.FromJson<GetTransactionIntentResponse>(result.FunctionResult.ToString());
+        if (responseObject.minted)
+        {
+            // Do something if true
+            Debug.Log("Minted is true");
+            //TODO DONE!!!!
+        }
+        else
+        {
+            // Do something else if false
+            Debug.Log("Minted is false");
+            GetTransactionIntent(responseObject.id);
+        }
+    }
+
+    private void OnGetTransactionIntentError(PlayFabError error)
+    {
+        mintPanel.SetActive(true);
+        Debug.LogWarning(error.GenerateErrorReport());
     }
 }

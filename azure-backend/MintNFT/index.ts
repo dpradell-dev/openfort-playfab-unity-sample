@@ -5,7 +5,7 @@ import Openfort, {
 } from "@openfort/openfort-node";
 
 const OF_API_KEY = process.env.OF_API_KEY;
-const CHAIN_ID = 80001; //Mumbai
+const CHAIN_ID = 80001; // Mumbai
 const OF_NFT_CONTRACT = process.env.OF_NFT_CONTRACT;
 const OF_SPONSOR_POLICY = process.env.OF_SPONSOR_POLICY;
 
@@ -15,34 +15,40 @@ if (!OF_API_KEY || !OF_NFT_CONTRACT || !OF_SPONSOR_POLICY) {
 
 const openfort = new Openfort(OF_API_KEY);
 
+function validateRequestBody(req: HttpRequest): void {
+    if (!req.body || 
+        !req.body.CallerEntityProfile.Lineage.MasterPlayerAccountId ||
+        !req.body.FunctionArgument.playerId ||
+        !req.body.FunctionArgument.receiverAddress) {
+        throw new Error("Invalid request body: Missing required parameters.");
+    }
+}
+
 const httpTrigger: AzureFunction = async function (
     context: Context,
     req: HttpRequest
 ): Promise<void> {
+    context.log("Starting HTTP trigger function processing.");
+
     try {
         validateRequestBody(req);
+        context.log("Request body validated.");
 
         const { playerId, receiverAddress } = req.body.FunctionArgument;
+
+        context.log(`Creating transaction intent for player ID: ${playerId} and receiver address: ${receiverAddress}`);
         const transactionIntent = await createTransactionIntent(playerId, receiverAddress);
 
         context.res = buildSuccessResponse(transactionIntent.id);
+        context.log("Function execution successful and response sent.");
     } catch (error) {
-        context.log(error);
+        context.log("An error occurred:", error);
         context.res = {
             status: 500,
             body: JSON.stringify(error),
         };
     }
 };
-
-function validateRequestBody(req: HttpRequest): void {
-    if (!req.body || 
-        !req.body.CallerEntityProfile.Lineage.MasterPlayerAccountId ||
-        !req.body.FunctionArgument.playerId ||
-        !req.body.FunctionArgument.receiverAddress) {
-        throw new Error("Please pass a valid request body");
-    }
-}
 
 async function createTransactionIntent(playerId: string, receiverAddress: string): Promise<any> {
     const interaction: Interaction = {

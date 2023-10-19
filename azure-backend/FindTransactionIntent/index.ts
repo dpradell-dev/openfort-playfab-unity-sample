@@ -3,67 +3,74 @@ import Openfort from "@openfort/openfort-node";
 
 const openfort = new Openfort(process.env.OF_API_KEY);
 
+function isValidRequestBody(body: any): boolean {
+  return body &&
+    body.CallerEntityProfile &&
+    body.CallerEntityProfile.Lineage &&
+    body.CallerEntityProfile.Lineage.MasterPlayerAccountId &&
+    body.FunctionArgument &&
+    body.FunctionArgument.playerId &&
+    body.FunctionArgument.receiverAddress;
+}
+
 const httpTrigger: AzureFunction = async function (
   context: Context,
   req: HttpRequest
 ): Promise<void> {
-  context.log("Function triggered.");
+  context.log("Starting HTTP trigger function processing.");
 
   try {
-    if (
-      !req.body ||
-      !req.body.CallerEntityProfile.Lineage.MasterPlayerAccountId ||
-      !req.body.FunctionArgument.playerId ||
-      !req.body.FunctionArgument.receiverAddress
-    ) {
+    if (!isValidRequestBody(req.body)) {
+      context.log("Invalid request body received.");
       context.res = {
         status: 400,
         body: "Please pass a valid request body",
       };
       return;
     }
-    context.log("Valid request body found.");
 
     const playerId = req.body.FunctionArgument.playerId;
     const receiverAddress = req.body.FunctionArgument.receiverAddress;
 
+    context.log(`Fetching data for player ID: ${playerId}`);
+
     const player = await openfort.players
       .get({ id: playerId, expand: ["transactionIntents"] })
       .catch((error) => {
-        context.log("Error while fetching player:", error);
+        context.log("Error while fetching player data:", error);
         context.res = {
           status: 500,
           body: JSON.stringify(error),
         };
-        return;
+        return null;
       });
-    context.log("Player data fetched.");
+
+    if (!player) {
+      context.log("Failed to retrieve player data or error occurred.");
+      return;
+    }
 
     const transactionIntents = player["transactionIntents"];
     if (!transactionIntents || transactionIntents.length === 0) {
-      context.log("No transaction intents found.");
+      context.log("No transaction intents associated with the player.");
       return;
     }
-    context.log("Transaction intents found.");
 
     const interactions = await transactionIntents[0].interactions;
     if (!interactions || interactions.length !== 1) {
-      context.log("Interactions check failed.");
+      context.log("Either no interactions or multiple interactions found.");
       return;
     }
-    context.log("Interaction check passed.");
 
     if (
       !interactions[0].functionName ||
       !interactions[0].functionName.includes("mint")
     ) {
-      context.log("Function name check failed.");
+      context.log("Interaction doesn't include the 'mint' function name.");
       return;
     }
-    context.log("Function name check passed.");
 
     let parsedAddress;
-
     try {
         parsedAddress = JSON.parse(interactions[0].functionArgs[0]);
     } catch (error) {
@@ -71,13 +78,10 @@ const httpTrigger: AzureFunction = async function (
         return;
     }
 
-    if (!interactions[0].functionArgs || parsedAddress !== receiverAddress) {
-        context.log(receiverAddress);
-        context.log(parsedAddress);
-        context.log("Receiver address check failed.");
+    if (!parsedAddress || parsedAddress !== receiverAddress) {
+        context.log(`Receiver address mismatch. Expected: ${receiverAddress}, Found: ${parsedAddress}`);
         return;
     }
-    context.log("Receiver address check passed.");
 
     context.res = {
       status: 200,
@@ -86,9 +90,9 @@ const httpTrigger: AzureFunction = async function (
       }),
     };
 
-    context.log("API call was successful.");
+    context.log("Function execution successful and response sent.");
   } catch (error) {
-    context.log("An unexpected error occurred:", error);
+    context.log("Unhandled error occurred:", error);
     context.res = {
       status: 500,
       body: JSON.stringify(error),
