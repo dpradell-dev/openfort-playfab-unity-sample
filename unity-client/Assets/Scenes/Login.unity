@@ -1870,7 +1870,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 262115555}
         m_TargetAssemblyTypeName: OpenfortController, Assembly-CSharp
-        m_MethodName: CreatePlayer
+        m_MethodName: PlayFabAuth_OnLoginSuccess_Handler
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

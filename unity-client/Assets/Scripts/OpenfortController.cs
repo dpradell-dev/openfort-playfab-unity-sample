@@ -1,9 +1,11 @@
 using System.Collections.Generic;
 using Newtonsoft.Json;
 using PlayFab;
+using PlayFab.ClientModels;
 using PlayFab.CloudScriptModels;
 using UnityEngine;
 using UnityEngine.Events;
+using EntityKey = PlayFab.CloudScriptModels.EntityKey;
 
 public class OpenfortController : MonoBehaviour
 {
@@ -52,7 +54,32 @@ public class OpenfortController : MonoBehaviour
 
 
     #region AZURE_FUNCTION_CALLERS
-    public void CreatePlayer()
+    public void PlayFabAuth_OnLoginSuccess_Handler()
+    {
+        var request = new GetUserDataRequest();
+
+        PlayFabClientAPI.GetUserReadOnlyData(request, result =>
+        {
+            if (result.Data != null && result.Data.ContainsKey("OpenfortPlayerId") &&
+                result.Data.ContainsKey("PlayerWalletAddress"))
+            {
+                _playerId = result.Data["OpenfortPlayerId"].Value;
+                _playerWalletAddress = result.Data["PlayerWalletAddress"].Value;
+                
+                GetPlayerNftInventory(_playerId);
+            }
+            else
+            {
+                CreatePlayer();
+            }
+        }, error =>
+        {
+            // Back to login panel
+            OnCreatePlayerErrorEvent?.Invoke();
+        });
+    }
+    
+    private void CreatePlayer()
     {
         var request = new ExecuteFunctionRequest()
         {
