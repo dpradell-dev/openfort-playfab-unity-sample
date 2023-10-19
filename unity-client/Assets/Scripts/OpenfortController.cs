@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using PlayFab;
 using PlayFab.CloudScriptModels;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class OpenfortController : MonoBehaviour
 {
@@ -42,11 +43,15 @@ public class OpenfortController : MonoBehaviour
         public long lastTransferredAt;
     }
 
+    public UnityEvent OnCreatePlayerErrorEvent;
+
     public GameObject mintPanel;
     
     private string _playerId;
     private string _playerWalletAddress;
 
+
+    #region AZURE_FUNCTION_CALLERS
     public void CreatePlayer()
     {
         var request = new ExecuteFunctionRequest()
@@ -63,26 +68,6 @@ public class OpenfortController : MonoBehaviour
         PlayFabCloudScriptAPI.ExecuteFunction(request, OnCreatePlayerSuccess, OnCreatePlayerError);
     }
     
-    private void OnCreatePlayerSuccess(ExecuteFunctionResult result)
-    {
-        string json = result.FunctionResult.ToString();
-        CreatePlayerResponse response = JsonUtility.FromJson<CreatePlayerResponse>(json);
-
-        // Now you can use response.playerId and response.address
-        Debug.Log($"Player ID: {response.playerId}, Player Wallet Address: {response.playerWalletAddress}");
-
-        _playerId = response.playerId;
-        _playerWalletAddress = response.playerWalletAddress;
-        
-        mintPanel.SetActive(true);
-    }
-
-    private void OnCreatePlayerError(PlayFabError error)
-    {
-        // Handle error
-        Debug.LogError($"Failed to call CreateOpenfortPlayer: {error.GenerateErrorReport()}");
-    }
-
     public void MintNFT()
     {
         if (string.IsNullOrEmpty(_playerId) || string.IsNullOrEmpty(_playerWalletAddress))
@@ -104,27 +89,6 @@ public class OpenfortController : MonoBehaviour
         
         PlayFabCloudScriptAPI.ExecuteFunction(request, OnMintNftSuccess, OnMintNftError);
     }
-
-    private void OnMintNftSuccess(ExecuteFunctionResult result)
-    {
-        Debug.Log("MINTED!");
-        //TODO 
-    }
-    
-    private void OnMintNftError(PlayFabError error)
-    {
-        Debug.Log(error);
-        if (error.GenerateErrorReport().Contains("10000ms")) //Timeout, but probably succeeded.
-        {
-            FindTransactionIntent();
-        }
-        else
-        {
-            mintPanel.SetActive(true);
-            //TODO status text?
-            Debug.LogWarning(error.GenerateErrorReport());
-        }
-    }
     
     public void FindTransactionIntent()
     {
@@ -145,22 +109,7 @@ public class OpenfortController : MonoBehaviour
             GeneratePlayStreamEvent = true
         };
         
-        PlayFabCloudScriptAPI.ExecuteFunction(request, OnFindTransactionIntentSuccess, OnFindTransactionIntentError);
-    }
-
-    private void OnFindTransactionIntentError(PlayFabError error)
-    {
-        mintPanel.SetActive(true);
-        Debug.LogWarning(error.GenerateErrorReport());
-    }
-
-    private void OnFindTransactionIntentSuccess(ExecuteFunctionResult result)
-    {
-        Debug.Log(result.FunctionResult);
-        var json = result.FunctionResult.ToString();
-        var responseObject = JsonUtility.FromJson<FindTransactionIntentResponse>(json);
-        
-        GetTransactionIntent(responseObject.id);
+        PlayFabCloudScriptAPI.ExecuteFunction(request, OnFindTransactionIntentSuccess, OnGeneralError);
     }
     
     private void GetTransactionIntent(string transactionIntentId)
@@ -170,11 +119,56 @@ public class OpenfortController : MonoBehaviour
             FunctionName = "GetTransactionIntent",
             FunctionParameter = new
             {
-                transactionIntentId = transactionIntentId
+                transactionIntentId
             }
         };
 
-        PlayFabCloudScriptAPI.ExecuteFunction(request, OnGetTransactionIntentSuccess, OnGetTransactionIntentError);
+        PlayFabCloudScriptAPI.ExecuteFunction(request, OnGetTransactionIntentSuccess, OnGeneralError);
+    }
+    
+    private void GetPlayerNftInventory(string playerId)
+    {
+        var request = new ExecuteFunctionRequest
+        {
+            FunctionName = "GetPlayerNftInventory",
+            FunctionParameter = new
+            {
+                playerId
+            }
+        };
+
+        PlayFabCloudScriptAPI.ExecuteFunction(request, OnGetPlayerNftInventorySuccess, OnGeneralError);
+    }
+    #endregion
+
+    #region SUCCESS_CALLBACK_HANDLERS
+    private void OnCreatePlayerSuccess(ExecuteFunctionResult result)
+    {
+        string json = result.FunctionResult.ToString();
+        CreatePlayerResponse response = JsonUtility.FromJson<CreatePlayerResponse>(json);
+
+        // Now you can use response.playerId and response.address
+        Debug.Log($"Player ID: {response.playerId}, Player Wallet Address: {response.playerWalletAddress}");
+
+        _playerId = response.playerId;
+        _playerWalletAddress = response.playerWalletAddress;
+        
+        mintPanel.SetActive(true);
+    }
+
+    private void OnMintNftSuccess(ExecuteFunctionResult result)
+    {
+        Debug.Log("minted = true");
+        GetPlayerNftInventory(_playerId);
+    }
+
+    private void OnFindTransactionIntentSuccess(ExecuteFunctionResult result)
+    {
+        Debug.Log(result.FunctionResult);
+        var json = result.FunctionResult.ToString();
+        var responseObject = JsonUtility.FromJson<FindTransactionIntentResponse>(json);
+        
+        GetTransactionIntent(responseObject.id);
     }
 
     private void OnGetTransactionIntentSuccess(ExecuteFunctionResult result)
@@ -195,40 +189,45 @@ public class OpenfortController : MonoBehaviour
         }
     }
 
-    private void OnGetTransactionIntentError(PlayFabError error)
-    {
-        mintPanel.SetActive(true);
-        Debug.LogWarning(error.GenerateErrorReport());
-    }
-    
-    private void GetPlayerNftInventory(string playerId)
-    {
-        var request = new ExecuteFunctionRequest
-        {
-            FunctionName = "GetPlayerNftInventory",
-            FunctionParameter = new
-            {
-                playerId
-            }
-        };
-
-        PlayFabCloudScriptAPI.ExecuteFunction(request, OnGetPlayerNftInventorySuccess, OnGetPlayerNftInventoryError);
-    }
-
-    private void OnGetPlayerNftInventoryError(PlayFabError error)
-    {
-        throw new System.NotImplementedException();
-    }
-
     private void OnGetPlayerNftInventorySuccess(ExecuteFunctionResult result)
     {
         Debug.Log(result.FunctionResult);
         var json = result.FunctionResult.ToString();
-        List<NftItem> itemList = JsonConvert.DeserializeObject<List<NftItem>>(json);
+        List<NftItem> nftItems = JsonConvert.DeserializeObject<List<NftItem>>(json);
 
-        foreach (var item in itemList)
+        foreach (var nft in nftItems)
         {
-            Debug.Log(item.tokenId);
+            Debug.Log(nft.tokenId);
         }
     }
+    #endregion
+
+    #region ERROR_CALLBACK_HANDLERS
+    private void OnCreatePlayerError(PlayFabError error)
+    {
+        Debug.LogError($"Failed to call CreateOpenfortPlayer: {error.GenerateErrorReport()}");
+        OnCreatePlayerErrorEvent?.Invoke();
+    }
+    
+    private void OnMintNftError(PlayFabError error)
+    {
+        Debug.Log(error);
+        if (error.GenerateErrorReport().Contains("10000ms")) //Timeout, but probably succeeded.
+        {
+            FindTransactionIntent();
+        }
+        else
+        {
+            mintPanel.SetActive(true);
+            //TODO status text?
+            Debug.LogWarning(error.GenerateErrorReport());
+        }
+    }
+    
+    private void OnGeneralError(PlayFabError error)
+    {
+        mintPanel.SetActive(true);
+        Debug.LogWarning(error.GenerateErrorReport());
+    }
+    #endregion
 }
