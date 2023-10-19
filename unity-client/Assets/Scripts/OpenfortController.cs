@@ -47,7 +47,9 @@ public class OpenfortController : MonoBehaviour
     }
 
     public UnityEvent OnCreatePlayerErrorEvent;
+    public GameObject uiCanvas;
     public GameObject mintPanel;
+    public NftPrefab nftPrefab;
     public TextMeshProUGUI statusText;
     
     private string _playerId;
@@ -238,7 +240,10 @@ public class OpenfortController : MonoBehaviour
 
         foreach (var nft in nftItems)
         {
-            Debug.Log(nft.tokenId);
+            //TODO instantiate into scroll grid layout in case more than 1 nft.
+            var instantiatedNft = Instantiate(nftPrefab, uiCanvas.transform);
+            instantiatedNft.Setup(nft.assetType, nft.tokenId.ToString());
+            Debug.Log(nft);
         }
     }
 
