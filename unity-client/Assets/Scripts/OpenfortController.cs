@@ -77,10 +77,56 @@ public class OpenfortController : MonoBehaviour
     private void OnMintNftSuccess(ExecuteFunctionResult result)
     {
         Debug.Log("MINTED!");
+        //TODO 
     }
     
     private void OnMintNftError(PlayFabError error)
     {
         Debug.Log(error);
+        if (error.GenerateErrorReport().Contains("10000ms")) //Timeout, but probably succeeded.
+        {
+            FindTransactionIntent();
+        }
+        else
+        {
+            mintPanel.SetActive(true);
+            //TODO status text?
+            Debug.LogWarning(error.GenerateErrorReport());
+        }
+    }
+    
+    public void FindTransactionIntent()
+    {
+        if (string.IsNullOrEmpty(_playerId) || string.IsNullOrEmpty(_playerWalletAddress))
+        {
+            Debug.LogError("Player ID or Player Wallet Address is null or empty.");
+            return;
+        }
+        
+        var request = new ExecuteFunctionRequest
+        {
+            FunctionName = "FindTransactionIntent", // Your Azure function name
+            FunctionParameter = new
+            {
+                playerId = _playerId,
+                receiverAddress = _playerWalletAddress
+            },
+            GeneratePlayStreamEvent = true
+        };
+        
+        PlayFabCloudScriptAPI.ExecuteFunction(request, OnFindTransactionIntentSuccess, OnFindTransactionIntentError);
+    }
+
+    private void OnFindTransactionIntentError(PlayFabError error)
+    {
+        //TODO
+        Debug.Log(error);
+    }
+
+    private void OnFindTransactionIntentSuccess(ExecuteFunctionResult result)
+    {
+        Debug.Log(result.FunctionResult);
+        
+        //TODO GetTransactionIntent
     }
 }
