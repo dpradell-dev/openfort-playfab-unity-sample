@@ -27,7 +27,7 @@ public class PlayFabAuth : MonoBehaviour
 
     #region PUBLIC_METHODS
 
-    public void LoginUserWithGoogle(string googleAuthCode)
+    public void LoginUserWithGooglePlay(string googleAuthCode)
     {
         statusText.text = "Logging in with Google Play...";
         

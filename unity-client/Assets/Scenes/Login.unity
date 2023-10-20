@@ -1287,7 +1287,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 963035688}
         m_TargetAssemblyTypeName: PlayFabAuth, Assembly-CSharp
-        m_MethodName: LoginUserWithGoogle
+        m_MethodName: LoginUserWithGooglePlay
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
