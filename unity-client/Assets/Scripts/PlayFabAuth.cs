@@ -26,6 +26,22 @@ public class PlayFabAuth : MonoBehaviour
     public UnityEvent OnLoginSuccess;
 
     #region PUBLIC_METHODS
+
+    public void LoginUserWithGoogle(string googleAuthCode)
+    {
+        statusText.text = "Logging in with Google Play...";
+        
+        var loginRequest = new LoginWithGooglePlayGamesServicesRequest()
+        {
+            TitleId = PlayFabSettings.TitleId,
+            ServerAuthCode = googleAuthCode,
+            CreateAccount = true
+        };
+
+        //TODO Check if callbacks are correct like this
+        PlayFabClientAPI.LoginWithGooglePlayGamesServices(loginRequest, LoginSuccess, OnError);
+    }
+
     public void LoginUser()
     {
         if(!ValidateInput(lEmail.text, lEmail.text)) return;
