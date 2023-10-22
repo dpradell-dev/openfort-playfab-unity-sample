@@ -4,13 +4,12 @@
 By incorporating the [Openfort SDK](https://github.com/openfort-xyz/openfort-node) into Azure Functions, we create a seamless bridge to PlayFab. This connection allows Unity clients, through the PlayFab Unity SDK, to tap into these functions, making the entire range of Openfort functionalities readily available within the game environment.
 
 ## Prerequisites
-+ Create a PlayFab account and title.
++ [Create a PlayFab account and title](https://learn.microsoft.com/en-us/gaming/playfab/gamemanager/quickstart).
 + Prepare for Azure development:
-    + Configure environment.
-    + Sign in to Azure.
-    + Create a function app.
-+ Visit dashboard.openfort.xyz and sign in to create a project.
-
+    + [Configure environment](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node?pivots=nodejs-model-v4#configure-your-environment).
+    + [Sign in to Azure](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node?pivots=nodejs-model-v4#sign-in-to-azure).
+    + [Create a function app](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node?pivots=nodejs-model-v4#create-the-function-app-in-azure).
++ Visit [dashboard.openfort.xyz](http://dashboard.openfort.xyz) and sign in to create a project.
 
 ## Deploy Azure Functions
 
