@@ -41,11 +41,44 @@ public class GooglePlayAuth : MonoBehaviour
                     OnGooglePlayAuthSuccess?.Invoke(authCode);
                 });
             }
-            else
+            else 
             {
+                Debug.Log(success.ToString());
                 Debug.LogError("Failed to retrieve Google Play auth code.");
                 OnGooglePlayAuthError?.Invoke();
             }
         });
     }
+
+    //TODO in another script
+    void Update() 
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            // Close the game
+            QuitGame();
+        }
+    }
+
+    void QuitGame()
+    {
+        // If we are running in a standalone build of the game
+#if UNITY_STANDALONE
+        // Quit the application
+        Application.Quit();
+#endif
+
+        // If we are running in the editor
+#if UNITY_EDITOR
+        // Stop playing the scene
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
+
+        // If we are running on mobile
+#if UNITY_ANDROID || UNITY_IOS
+        // Use native quit function
+        Application.Quit();
+#endif
+    }
+
 }
