@@ -11,6 +11,10 @@ By incorporating the [Openfort SDK](https://github.com/openfort-xyz/openfort-nod
     + [Create a function app](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node?pivots=nodejs-model-v4#create-the-function-app-in-azure)
 + Sign in in [dashboard.openfort.xyz](http://dashboard.openfort.xyz) and create a project
 
+## Set up Openfort project
+
+### Auyeah
+
 ## Deploy Azure Functions
 
 
