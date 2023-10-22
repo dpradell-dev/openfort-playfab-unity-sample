@@ -12,6 +12,7 @@ By integrating the [Openfort SDK](https://github.com/openfort-xyz/openfort-node)
     + [Sign in to Azure](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node?pivots=nodejs-model-v4#sign-in-to-azure)
     + [Create a function app](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node?pivots=nodejs-model-v4#create-the-function-app-in-azure)
 + [Sign in to dashboard.openfort.xyz](http://dashboard.openfort.xyz) and create a new project
++ [Configure Google Play Services] //TODO
 + Download or clone [sample project](https://github.com/dpradell-dev/openfort-playfab-unity-sample): 
     + Open [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client) with Unity 
     + Open [azure-backend](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/azure-backend) with VS Code
@@ -37,7 +38,9 @@ By integrating the [Openfort SDK](https://github.com/openfort-xyz/openfort-node)
 
     ![Alt text](image-3.png)
 
-## TODO
+## Deploy Azure backend
+
+
 
 //TODO
 + Add PlayFab title to Unity
