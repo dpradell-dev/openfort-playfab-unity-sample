@@ -9,9 +9,13 @@ By incorporating the [Openfort SDK](https://github.com/openfort-xyz/openfort-nod
     + [Configure environment](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node?pivots=nodejs-model-v4#configure-your-environment)
     + [Sign in to Azure](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node?pivots=nodejs-model-v4#sign-in-to-azure)
     + [Create a function app](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node?pivots=nodejs-model-v4#create-the-function-app-in-azure)
-+ Sign in in [dashboard.openfort.xyz](http://dashboard.openfort.xyz) and create a project
++ [Sign in to dashboard.openfort.xyz](http://dashboard.openfort.xyz) and create a new project
++ [Download sample project](https://github.com/dpradell-dev/openfort-playfab-unity-sample): //TODO change to openfort repo
+    + Open [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client) with Unity //TODO change to openfort repo 
+    + Open [azure-backend](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/azure-backend) with VS Code //TODO change to openfort repo
 
 ## Set up Openfort project
+
 
 ### Auyeah
 
