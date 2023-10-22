@@ -22,7 +22,7 @@ This sample requires a Contract to run. We're using [0x38090d1636069c0ff1Af6bc17
 <img src="image-1.png" alt="Alt text" width="500"/>
 
 2. #### [Add a Policy](https://dashboard.openfort.xyz/policies/new)
-In this case we want to pay the gas for our users, so we set a new gas policy:
+In this case we want to pay the gas fees for our users, so we set a new gas policy:
 
 <img src="image.png" alt="Alt text" width="500"/>
 
