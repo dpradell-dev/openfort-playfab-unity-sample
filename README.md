@@ -28,11 +28,14 @@ By integrating the [Openfort SDK](https://github.com/openfort-xyz/openfort-node)
 
    ![Policy setup image](image.png)
 
-   Now create a new rule for the policy to work for our contract:
+   Now add a rule for the policy to work for our contract:
 
    ![Policy rule image](image-2.png)
 
-3. #### TODO
+3. #### [Get Publishable key](https://dashboard.openfort.xyz/apikeys)
+Copy this key, we will need it later:
+
+![Alt text](image-3.png)
 
 ## TODO
 
