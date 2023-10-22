@@ -18,6 +18,7 @@ By incorporating the [Openfort SDK](https://github.com/openfort-xyz/openfort-nod
 
 1. ### [Add a Contract](https://dashboard.openfort.xyz/assets/new)
 This sample requires a Contract to run. We're using [0x38090d1636069c0ff1Af6bc1737Fb996B7f63AC0](https://mumbai.polygonscan.com/address/0x38090d1636069c0ff1Af6bc1737Fb996B7f63AC0) (NFT contract deployed in 80001 Mumbai). To follow this guide you can use it too.
+
 2. ### [Add a Policy](https://dashboard.openfort.xyz/policies/new)
 In this case we want to pay the gas for our users, so we set a new gas policy:
 ![Alt text](image.png)
