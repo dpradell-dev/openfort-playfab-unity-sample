@@ -26,6 +26,10 @@ In this case we want to pay the gas for our users, so we set a new gas policy:
 
 <img src="image.png" alt="Alt text" width="500"/>
 
+Now create a new rule for the policy to work for our contract:
+
+<img src="image-2.png" alt="Alt text" width="500"/>
+
 ### Auyeah
 
 ## Deploy Azure Functions
