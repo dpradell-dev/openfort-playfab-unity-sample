@@ -1,7 +1,10 @@
 # Openfort-PlayFab Integration in Unity
 
 ## Overview
+## Overview
 [PlayFab](https://playfab.com/) is a backend service by Microsoft for game developers, offering tools for live game management, all powered by Azure's cloud infrastructure.
+
+In this integration, we also leverage the [Google Play Games plugin for Unity](https://github.com/playgameservices/play-games-plugin-for-unity) to handle authentication with PlayFab. This ensures a seamless and secure login experience for users on Android devices. 
 
 By integrating the [Openfort SDK](https://github.com/openfort-xyz/openfort-node) into Azure Functions, we create a seamless bridge to PlayFab. This connection allows Unity clients using the PlayFab Unity SDK to tap into these functions, making the entire range of Openfort functionalities readily available within the game environment.
 
