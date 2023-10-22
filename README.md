@@ -9,7 +9,7 @@ By incorporating the [Openfort SDK](https://github.com/openfort-xyz/openfort-nod
     + [Configure environment](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node?pivots=nodejs-model-v4#configure-your-environment)
     + [Sign in to Azure](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node?pivots=nodejs-model-v4#sign-in-to-azure)
     + [Create a function app](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node?pivots=nodejs-model-v4#create-the-function-app-in-azure)
-+ Visit [dashboard.openfort.xyz](http://dashboard.openfort.xyz) and sign in to create a project
++ Sign in in [dashboard.openfort.xyz](http://dashboard.openfort.xyz) and create a project
 
 ## Deploy Azure Functions
 
