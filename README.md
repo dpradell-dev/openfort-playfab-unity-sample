@@ -30,24 +30,21 @@ Now create a new rule for the policy to work for our contract:
 
 <img src="image-2.png" alt="Alt text" width="500"/>
 
-### Auyeah
-
-## Deploy Azure Functions
+3. #### TODO
 
 
+## TODO
 
-Add PlayFab title to Unity
-Add PLAYFAB_API_KEY and PLAYFAB_SECRET_KEY to azure
-Register functions to Playfab title
-Add Openfort API Key to Azure config
-Add Openfort ContractAddress to Azure config
-Add Contract to Openfort
-Add Policy to Openfort
-Setup Policy and Contract (0x38090d1636069c0ff1Af6bc1737Fb996B7f63AC0) in Openfort?
-keystore
+//TODO
++ Add PlayFab title to Unity
++ Add PLAYFAB_API_KEY and PLAYFAB_SECRET_KEY to azure
++ Register functions to Playfab title
++ Add Openfort API Key to Azure config
++ Add Openfort ContractAddress to Azure config
++ keystore
 
 
-Google play
-Add google play sdk version 14
+## Google play
++ Add google play sdk version 14
 
 
