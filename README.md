@@ -89,8 +89,20 @@ Next we will add this url (and all the others) to PlayFab in order to be able to
 
     Repeat this step to register all the deployed functions.
     
-
 2. #### Install Google Add-on
+    Go to ***Add-ons*** and select ***Google***:
+
+    ![Alt text](image-15.png)
+
+    Go to the [Google Cloud APIs Credentials dashboard](https://console.cloud.google.com/apis/credentials) and select the arrow of your ***OAuth Web Application Client***:
+
+    ![Alt text](image-16.png)
+
+    Copy the ***Client ID*** and the ***Client secret***:
+
+    ![Alt text](image-17.png)
+
+    Back to PlayFab dashboard, copy
 
 
 
