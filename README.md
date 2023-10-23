@@ -120,56 +120,57 @@ Subsequently, add this URL (along with all others) to PlayFab to enable access t
     ```
     ![Authorized Redirect URIs](docs-img/image-20.png)
 
-## Set up Azure backend
-Our Azure backend environment will need some environment variables from both PlayFab and Openfort so let's add those.
+## Set up Azure Backend
 
-1. #### Add Openfort environment variables
-    Go to the [Azure Portal](https://portal.azure.com/#home) and select your Function App. Under ***Configuration*** choose ***New application setting***:
+Our Azure backend requires environment variables from both PlayFab and Openfort. Let's configure them.
 
-    ![Alt text](docs-img/image-21.png)
+1. #### Add Openfort Environment Variables
+    - Navigate to the [Azure Portal](https://portal.azure.com/#home) and select your Function App.
+    - Under ***Configuration***, click ***New application setting***:
+      
+      ![Azure Configuration](docs-img/image-21.png)
 
-    Fill the empty fields with:
-    + Name: `OF_API_KEY`
-    + Value: [Get **Secret key**](https://dashboard.openfort.xyz/apikeys)
+    - Provide the following details:
+      + Name: `OF_API_KEY`
+      + Value: [Retrieve the **Secret key**](https://dashboard.openfort.xyz/apikeys)
 
-    Repeat the process to add another application setting:
-    + Name: `OF_NFT_CONTRACT`
-    + Value: [Get **Contract API ID**](https://dashboard.openfort.xyz/assets)
+    - Add another application setting:
+      + Name: `OF_NFT_CONTRACT`
+      + Value: [Retrieve the **Contract API ID**](https://dashboard.openfort.xyz/assets)
 
-    Repeat the process to add another application setting:
-    + Name: `OF_SPONSOR_POLICY`
-    + Value: [Get **Policy API ID**](https://dashboard.openfort.xyz/policies)
+    - And another:
+      + Name: `OF_SPONSOR_POLICY`
+      + Value: [Retrieve the **Policy API ID**](https://dashboard.openfort.xyz/policies)
 
-    You should see the configuration panel like this. Choose ***Save***:
+    After adding these, your configuration panel should resemble the following. Click ***Save***:
     
-    ![Alt text](docs-img/image-23.png)
+    ![Configuration Save](docs-img/image-23.png)
 
-2. #### Add PlayFab environment variables
-    Go to the [PlayFab developer dashboard](https://developer.playfab.com/), select your title and choose ***Settings wheel --> Tittle settings***:
+2. #### Add PlayFab Environment Variables
+    - Visit the [PlayFab developer dashboard](https://developer.playfab.com/), select your title, and navigate to ***Settings wheel --> Title settings***:
 
-    ![Alt text](docs-img/image-24.png)
+      ![PlayFab Settings](docs-img/image-24.png)
 
-    Under ***API Features***, copy your ***Title ID***:
+    - In the ***API Features*** section, copy your ***Title ID***:
 
-    ![Alt text](docs-img/image-29.png)
+      ![Title ID](docs-img/image-29.png)
 
-    Under ***Secret Keys***, copy your ***Secret key***:
+    - Under ***Secret Keys***, note down your ***Secret key***:
 
-    ![Alt text](docs-img/image-26.png)
+      ![Secret Key](docs-img/image-26.png)
 
-    Go to the [Azure Portal](https://portal.azure.com/#home) and select your Function App. Under ***Configuration*** choose ***New application setting***:
+    - Return to the [Azure Portal](https://portal.azure.com/#home) and choose your Function App.
+    - Under ***Configuration***, select ***New application setting*** and input:
+      + Name: `PLAYFAB_TITLE_ID`
+      + Value: [Your Title ID]
 
-    Fill the empty fields with:
-    + Name: `PLAYFAB_TITLE_ID`
-    + Value: [Your Title ID]
+    - Add another application setting:
+      + Name: `PLAYFAB_SECRET_KEY`
+      + Value: [Your Secret Key]
 
-    Repeat the process to add another application setting:
-    + Name: `PLAYFAB_SECRET_KEY`
-    + Value: [Your Secret Key]
+    Your configuration panel should now look like the following. Confirm your changes by clicking ***Save***:
 
-    You should see the configuration panel like this. Choose ***Save***:
-
-    ![Alt text](docs-img/image-27.png)
+    ![PlayFab Configuration Save](docs-img/image-27.png)
 
 ## Set up Unity client
 For your information, this Unity sample project already comes with:
