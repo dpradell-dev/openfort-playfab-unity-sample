@@ -58,6 +58,14 @@ In the explorer, right click on to one function and choose ***Deploy to Function
 
 ![Alt text](image-6.png)
 
+Select your Function App:
+
+![Alt text](image-7.png)
+
+Finally choose ***Deploy***:
+
+![Alt text](image-8.png)
+
 
 
 
