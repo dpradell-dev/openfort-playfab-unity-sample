@@ -41,6 +41,10 @@ By integrating the [Openfort SDK](https://github.com/openfort-xyz/openfort-node)
     ![Alt text](image-3.png)
 
 ## Deploy Azure backend
+| :warning: **Reminder**                                                      |
+|:----------------------------------------------------------------------------|
+| Always backup your data before making significant changes.                  |
+
 
 
 
