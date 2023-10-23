@@ -66,7 +66,9 @@ Finally choose ***Deploy***:
 
 ![Alt text](image-8.png)
 
+Go to your [Azure Portal](https://portal.azure.com/#home) and click on your Function App. You should see all the functions there:
 
+![Alt text](image-9.png)
 
 
 
