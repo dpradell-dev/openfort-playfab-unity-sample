@@ -102,7 +102,9 @@ Next we will add this url (and all the others) to PlayFab in order to be able to
 
     ![Alt text](image-17.png)
 
-    Back to PlayFab dashboard, copy
+    Back to PlayFab dashboard, paste those fields into ***Google OAuth Client ID*** and ***Google OAuth Client Secret*** and choose ***Install Google***:
+
+    ![Alt text](image-18.png)
 
 
 
