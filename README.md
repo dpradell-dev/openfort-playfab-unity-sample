@@ -66,7 +66,7 @@ Finally choose ***Deploy***:
 
 ![Alt text](image-8.png)
 
-Go to your [Azure Portal](https://portal.azure.com/#home) and click on your Function App. You should see all the functions there:
+Go to your [Azure Portal](https://portal.azure.com/#home) and select your Function App. You should see all the functions there:
 
 ![Alt text](image-10.png)
 
@@ -78,7 +78,19 @@ Next we will add this url (and all the others) to PlayFab in order to be able to
 
 ## Set up PlayFab Title
 
-Go to the PlayFab dashboard, select your title and select ***Automation***:
+1. #### Register Azure Functions
+    Go to the [PlayFab developer dashboard](https://developer.playfab.com/), select your title and select ***Automation***:
+
+    ![Alt text](image-12.png)
+
+    We already have our functions registered so to do that, select ***Register function*** and add the function name and its url:
+
+    ![Alt text](image-13.png)
+
+    Repeat this step to register all the deployed functions.
+    
+
+2. #### Install Google Add-on
 
 
 
