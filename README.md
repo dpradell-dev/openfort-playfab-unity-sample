@@ -194,8 +194,33 @@ Open [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sampl
     This will let us use Google Play Games to authenticate our users via PlayFab (remember [Google Add-on](https://github.com/dpradell-dev/openfort-playfab-unity-sample#install-google-add-on//TODOlink)) when our game/application is running on Android. If not, we will use PlayFab standard authentication.
 
 ## Run the game in Editor
+***Play*** the game, choose ***Register*** --> Enter some email and password --> choose ***Register*** again and you will encounter this scene:
+
+![Alt text](image-32.png)
+
+Choose ***Mint*** and after some time you will see the representation of your minted NFT:
+
+![Alt text](image-33.png)
+
+If you go to your [Openfort Players dashboard](https://dashboard.openfort.xyz/players), you will see a new player has been created. Select it:
+
+![Alt text](image-34.png)
+
+There you will see that a `mint` transaction has been completed successfully:
+
+![Alt text](image-35.png)
+
+You can also select your **Mumbai account** and under ***ERC-721 Token Txns*** you'll see the transaction:
+
+![Alt text](image-36.png)
+
+![Alt text](image-37.png)
 
 ## Build the game to Android
 
 ## Conclusion
-Once you've completed all the steps above, your Unity game should now be integrated with Openfort and PlayFab. Remember to test all functionalities before deploying to ensure a seamless player experience. For any issues or further queries, consider linking to a contact or support page.
+Once you've completed all the steps above, your Unity game should now be integrated with Openfort and PlayFab. Remember to test all functionalities before deploying to ensure a seamless player experience.
+
+If you want to know more in detail what's happening behind the scenes, please watch this [tutorial video]() (coming soon).
+
+For any issues or further queries, consider linking to a contact or support page.
