@@ -148,7 +148,7 @@ Our Azure backend environment will need some environment variables from both Pla
 
     Under ***API Features***, copy your ***Title ID***:
 
-    ![Alt text](image-25.png)
+    ![Alt text](image-29.png)
 
     Under ***Secret Keys***, copy your ***Secret key***:
 
