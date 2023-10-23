@@ -41,9 +41,16 @@ By integrating the [Openfort SDK](https://github.com/openfort-xyz/openfort-node)
     ![Alt text](image-3.png)
 
 ## Deploy Azure backend
-| :warning: **Reminder**                                                      |
-|:----------------------------------------------------------------------------|
-| Always backup your data before making significant changes.                  |
+Open [azure-backend](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/azure-backend) with VS Code and sign in to Azure:
+
+![Alt text](image-4.png)
+
+Make sure you have your Function App there (in our case it's openfort-playfab):
+
+![Alt text](image-5.png)
+
+
+
 
 
 
