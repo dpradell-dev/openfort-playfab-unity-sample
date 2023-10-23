@@ -172,57 +172,57 @@ Our Azure backend requires environment variables from both PlayFab and Openfort.
 
     ![PlayFab Configuration Save](docs-img/image-27.png)
 
-## Set up Unity client
-For your information, this Unity sample project already comes with:
+## Set up Unity Client
+
+This Unity sample project is already equipped with:
 + [PlayFab Unity SDK](https://github.com/PlayFab/UnitySDK)
-+ [Google Play Games Unity Plugin (v11.01)](https://github.com/playgameservices/play-games-plugin-for-unity) 
++ [Google Play Games Unity Plugin (v11.01)](https://github.com/playgameservices/play-games-plugin-for-unity)
 
-Open [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client) with Unity. We need to do very few things to get it running:
+To begin, open [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client) with Unity:
 
-1. #### Set up PlayFab SDK
-    In the ***Project*** tab, search for `PlayFabSharedSettings` and set your PlayFab ***Title ID***:
+1. #### Configure PlayFab SDK
+    - Navigate to the ***Project*** tab.
+    - Search for `PlayFabSharedSettings` and input your PlayFab ***Title ID***:
 
-    ![Alt text](docs-img/image-28.png)
+      ![PlayFab Settings](docs-img/image-28.png)
 
-2. #### Set up Google Play Games SDK
-    You should have the Google Play Games SDK set-up by following the [required tutorial](//TODOlink), but go to ***Window --> Google Play Games --> Setup --> Android setup*** to confirm you have these fields correctly filled:
+2. #### Configure Google Play Games SDK
+    - Even if you've set up the Google Play Games SDK following the [required tutorial](//TODOlink), ensure that you've correctly configured all fields by navigating to ***Window --> Google Play Games --> Setup --> Android setup***:
 
-    ![Alt text](docs-img/image-30.png)
+      ![Google Play Games Config 1](docs-img/image-30.png)
+      ![Google Play Games Config 2](docs-img/image-31.png)
 
-    ![Alt text](docs-img/image-31.png)
+    By doing this, when the game runs on Android, it will utilize Google Play Games for user authentication via PlayFab. Otherwise, the default PlayFab authentication will be used.
 
-    This will let us use Google Play Games to authenticate our users via PlayFab (remember [Google Add-on](https://github.com/dpradell-dev/openfort-playfab-unity-sample#install-google-add-on//TODOlink)) when our game/application is running on Android. If not, we will use PlayFab standard authentication.
+## Test in Editor
 
-## Run the game in Editor
-***Play*** the game, choose ***Register*** --> Enter some email and password --> choose ***Register*** again and you will encounter this scene:
+Start the game, opt for ***Register***, provide an email and password, then click ***Register*** again. This scene should appear:
 
-![Alt text](docs-img/image-32.png)
+![Game Scene](docs-img/image-32.png)
 
-Choose ***Mint*** and after some time you will see the representation of your minted NFT:
+Select ***Mint***. After a brief period, you should see a representation of your newly minted NFT:
 
-![Alt text](docs-img/image-33.png)
+![Minted NFT](docs-img/image-33.png)
 
-If you go to your [Openfort Players dashboard](https://dashboard.openfort.xyz/players), you will see a new player has been created. Select it:
+In the [Openfort Players dashboard](https://dashboard.openfort.xyz/players), a new player entry should be visible. On selecting this player:
 
-![Alt text](docs-img/image-34.png)
+![Player Entry](docs-img/image-34.png)
 
-There you will see that a `mint` transaction has been completed successfully:
+You'll notice that a `mint` transaction has been successfully processed:
 
-![Alt text](docs-img/image-35.png)
+![Mint Transaction](docs-img/image-35.png)
 
-You can also select your **Mumbai Account** and under ***ERC-721 Token Txns*** you'll see the transaction:
+Additionally, by choosing your **Mumbai Account** and viewing ***ERC-721 Token Txns***, the transaction is further confirmed:
 
-![Alt text](docs-img/image-36.png)
+![Transaction Confirm 1](docs-img/image-36.png)
+![Transaction Confirm 2](docs-img/image-37.png)
 
-![Alt text](docs-img/image-37.png)
+## Test on Android
 
-## Run the game in Android
-
-If you build and run the game to your Android device, you won't need to register/login manually as Google Play Games will take care of it, making the experience even more frictionless.
+Upon building and running the game on an Android device, the registration/login process is automated via Google Play Games, resulting in a streamlined user experience.
 
 ## Conclusion
-Once you've completed all the steps above, your Unity game should now be integrated with Openfort and PlayFab. Remember to test all functionalities before deploying to ensure a seamless player experience.
 
-If you want to know more in detail what's happening behind the scenes, please watch this [tutorial video]() (coming soon).
+Upon completing the above steps, your Unity game will be fully integrated with Openfort and PlayFab. Always remember to test every feature before deploying to guarantee a flawless player experience.
 
-For any issues or further queries, consider linking to a contact or support page.
+For a deeper understanding of the underlying processes, stay tuned for the [upcoming tutorial video](). For assistance or queries, consider visiting our contact or support page.
