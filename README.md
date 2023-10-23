@@ -216,7 +216,9 @@ You can also select your **Mumbai Account** and under ***ERC-721 Token Txns*** y
 
 ![Alt text](docs-img/image-37.png)
 
-## Build the game to Android
+## Run the game in Android
+
+If you build and run the game to your Android device, you won't need to register/login manually as Google Play Games will take care of it, making the experience even more frictionless.
 
 ## Conclusion
 Once you've completed all the steps above, your Unity game should now be integrated with Openfort and PlayFab. Remember to test all functionalities before deploying to ensure a seamless player experience.
