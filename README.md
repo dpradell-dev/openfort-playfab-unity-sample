@@ -54,6 +54,10 @@ Open the terminal and run:
 npm install
 ```
 
+In the explorer, right click on to one function and choose **Deploy to Function App...**:
+
+![Alt text](image-6.png)
+
 
 
 
