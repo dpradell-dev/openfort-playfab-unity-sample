@@ -49,6 +49,9 @@ Make sure you have your Function App there (in our case it's openfort-playfab):
 
 ![Alt text](image-5.png)
 
+Open the terminal and run:
+`npm install`
+
 
 
 
