@@ -7,6 +7,10 @@ In this integration, we also leverage the [Google Play Games plugin for Unity](h
 
 By integrating the [Openfort SDK](https://github.com/openfort-xyz/openfort-node) into Azure Functions, we then create a seamless bridge to PlayFab. This connection allows Unity clients using the PlayFab Unity SDK to tap into these functions, making the entire range of Openfort functionalities readily available within the game environment.
 
+## Application Workflow
+
+//TODO graphic
+
 ## Prerequisites
 + [Create a PlayFab account and title](https://learn.microsoft.com/en-us/gaming/playfab/gamemanager/quickstart)
 + Set up your Azure development environment:
@@ -168,13 +172,12 @@ Our Azure backend environment will need some environment variables from both Pla
 Open [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client) with Unity. We need to do very few things to get it running.
 
 1. #### Set up PlayFab SDK
-    In the ***Project*** tab, search for 'PlayFabSharedSettings' and set your PlayFab Title ID:
+    In the ***Project*** tab, search for `PlayFabSharedSettings` and set your PlayFab ***Title ID***:
 
     ![Alt text](image-28.png)
 
 2. #### Set up Google Play Games SDK
 
-    //TODO
     This will let us use Google Play Games to authenticate our users via PlayFab (remember [Google Add-on](https://github.com/dpradell-dev/openfort-playfab-unity-sample#install-google-add-on)) //TODOlink when our game/application is running on Android. If not, we will use PlayFab standard authentication.
 
 //TODO
