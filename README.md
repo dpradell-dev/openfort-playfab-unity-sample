@@ -124,7 +124,6 @@ Our Azure backend environment will need some environment variables from both Pla
     Fill the empty fields with:
     + Name: `OF_API_KEY`
     + Value: [Get **Secret key**](https://dashboard.openfort.xyz/apikeys)
-    ![Alt text](image-22.png)
 
     Repeat the process to add another application setting:
     + Name: `OF_NFT_CONTRACT`
