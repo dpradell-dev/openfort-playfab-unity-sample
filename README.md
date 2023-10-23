@@ -121,9 +121,18 @@ Our Azure backend environment will need some environment variables from both Pla
 
     ![Alt text](image-21.png)
 
-    Fill empty fields with:
+    Fill the empty fields with:
     + Name: `OF_API_KEY`
     + Value: [Get **Secret key**](https://dashboard.openfort.xyz/apikeys)
+    ![Alt text](image-22.png)
+
+    Repeat the process to add another application setting:
+    + Name: `OF_NFT_CONTRACT`
+    + Value: [Get **Contract API ID**](https://dashboard.openfort.xyz/assets)
+
+    Repeat the process to add another application setting:
+    + Name: `OF_SPONSOR_POLICY`
+    + Value: [Get **Policy API ID**](https://dashboard.openfort.xyz/policies)
 
 2. #### Add PlayFab environment variables
 
