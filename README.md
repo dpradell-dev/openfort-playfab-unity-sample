@@ -197,13 +197,5 @@ Open [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sampl
 
 ## Build the game to Android
 
-
-//TODO
-+ Set up Google Play SDK (video?)
-
-## Google Play
-+ Ensure you're using Google Play SDK version 14. This specific version is necessary for [specific reasons or functionalities you're targeting].
-
 ## Conclusion
-
 Once you've completed all the steps above, your Unity game should now be integrated with Openfort and PlayFab. Remember to test all functionalities before deploying to ensure a seamless player experience. For any issues or further queries, consider linking to a contact or support page.
