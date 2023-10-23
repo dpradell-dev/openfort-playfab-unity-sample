@@ -168,7 +168,7 @@ Our Azure backend environment will need some environment variables from both Pla
 
     ![Alt text](image-27.png)
 
-## Set up Unity project
+## Set up Unity client
 Open [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client) with Unity. We need to do very few things to get it running.
 
 1. #### Set up PlayFab SDK
@@ -177,11 +177,15 @@ Open [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sampl
     ![Alt text](image-28.png)
 
 2. #### Set up Google Play Games SDK
+    If you followed the [tutorial]() you should have the Google Play Games SDK set-up, but go to ***Window --> Google Play Games --> Setup --> Android setup*** to confirm you have this fields correctly filled:
+
+    ![Alt text](image-30.png)
+    ![Alt text](image-31.png)
 
     This will let us use Google Play Games to authenticate our users via PlayFab (remember [Google Add-on](https://github.com/dpradell-dev/openfort-playfab-unity-sample#install-google-add-on)) //TODOlink when our game/application is running on Android. If not, we will use PlayFab standard authentication.
 
 //TODO
-+ Set up Google Play SDK
++ Set up Google Play SDK (video?)
 + keystore
 
 ## Google Play
