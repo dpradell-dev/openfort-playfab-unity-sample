@@ -138,6 +138,10 @@ Our Azure backend environment will need some environment variables from both Pla
     ![Alt text](image-23.png)
 
 2. #### Add PlayFab environment variables
+Go to the [PlayFab developer dashboard](https://developer.playfab.com/), select your title and choose ***Settings --> Tittle settings***:
+
+![Alt text](image-24.png)
+
 
 
 //TODO
