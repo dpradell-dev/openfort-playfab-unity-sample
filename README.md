@@ -106,7 +106,9 @@ Next we will add this url (and all the others) to PlayFab in order to be able to
 
     ![Alt text](image-18.png)
 
-    Finally go back to [Google Cloud APIs Credentials dashboard](https://console.cloud.google.com/apis/credentials) and select your Web application:
+2. #### Add PlayFab OAuth redirect URL 
+
+    This step happens on [Google Cloud APIs Credentials dashboard](https://console.cloud.google.com/apis/credentials). Once there select your *Web application*:
 
     ![Alt text](image-19.png)
 
@@ -115,7 +117,7 @@ Next we will add this url (and all the others) to PlayFab in order to be able to
     https://oauth.playfab.com/oauth2/google
     ```
     ![Alt text](image-20.png)
-    
+
 
 
 
