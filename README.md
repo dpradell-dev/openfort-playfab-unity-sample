@@ -173,7 +173,7 @@ For your information, this Unity sample project already comes with:
 + [PlayFab Unity SDK](https://github.com/PlayFab/UnitySDK)
 + [Google Play Games Unity Plugin (v11.01)](https://github.com/playgameservices/play-games-plugin-for-unity) 
 
-Open [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client) with Unity. We need to do very few things to get it running.
+Open [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client) with Unity. We need to do very few things to get it running:
 
 1. #### Set up PlayFab SDK
     In the ***Project*** tab, search for `PlayFabSharedSettings` and set your PlayFab ***Title ID***:
@@ -184,7 +184,7 @@ Open [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sampl
     You should have the Google Play Games SDK set-up by following the [required tutorial](//TODOlink), but go to ***Window --> Google Play Games --> Setup --> Android setup*** to confirm you have these fields correctly filled:
 
     ![Alt text](image-30.png)
-    
+
     ![Alt text](image-31.png)
 
     This will let us use Google Play Games to authenticate our users via PlayFab (remember [Google Add-on](https://github.com/dpradell-dev/openfort-playfab-unity-sample#install-google-add-on//TODOlink)) when our game/application is running on Android. If not, we will use PlayFab standard authentication.
