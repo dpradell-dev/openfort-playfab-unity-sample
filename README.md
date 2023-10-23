@@ -1,11 +1,11 @@
 # Openfort-PlayFab Integration in Unity
 
 ## Overview
-[PlayFab](https://playfab.com/) is a backend service by Microsoft for game developers, offering tools for live game management, all powered by Azure's cloud infrastructure.
+[PlayFab](https://playfab.com/) is a backend service provided by Microsoft for game developers, offering tools for live game management, all powered by Azure's cloud infrastructure.
 
-In this integration, we also leverage the [Google Play Games plugin for Unity](https://github.com/playgameservices/play-games-plugin-for-unity) to handle authentication with PlayFab. This ensures a seamless and secure login experience for users on Android devices. 
+In this integration, we use the [Google Play Games plugin for Unity](https://github.com/playgameservices/play-games-plugin-for-unity) to handle authentication with PlayFab, ensuring a seamless and secure login experience for users on Android devices.
 
-By integrating the [Openfort SDK](https://github.com/openfort-xyz/openfort-node) into Azure Functions, we then create a seamless bridge to PlayFab. This connection allows Unity clients using the PlayFab Unity SDK to tap into these functions, making the entire range of Openfort functionalities readily available within the game environment.
+By integrating the [Openfort SDK](https://github.com/openfort-xyz/openfort-node) into Azure Functions, we establish a seamless connection to PlayFab. Unity clients using the PlayFab Unity SDK can tap into these functions, accessing the full range of Openfort features within the game environment.
 
 ## Application Workflow
 
@@ -18,41 +18,41 @@ By integrating the [Openfort SDK](https://github.com/openfort-xyz/openfort-node)
     + [Sign in to Azure](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node?pivots=nodejs-model-v4#sign-in-to-azure)
     + [Create a function app](https://learn.microsoft.com/en-us/azure/azure-functions/create-first-function-vs-code-node?pivots=nodejs-model-v4#create-the-function-app-in-azure)
 + [Sign in to dashboard.openfort.xyz](http://dashboard.openfort.xyz) and create a new project
-+ Download or clone [sample project](https://github.com/dpradell-dev/openfort-playfab-unity-sample): 
-    + Open [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client) with Unity 
++ Download or clone the [sample project](https://github.com/dpradell-dev/openfort-playfab-unity-sample): 
+    + Open [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client) with Unity
     + Open [azure-backend](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/azure-backend) with VS Code
-+ Watch the [video tutorial](https://www.youtube.com/watch?v=dbLpA2YB6vU) on how to configure *Google Play Games for Unity* and apply it to [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client). Keep in mind that:
++ Watch the [video tutorial](https://www.youtube.com/watch?v=dbLpA2YB6vU) on configuring *Google Play Games for Unity* and apply it to [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client). Note that:
     + Google Play Games SDK is already imported to [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client)
-    + No need to follow the instructions related to ***Unity Gaming Services***
-    + We already provide a [Keystore](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client/Keystore//TODOlink) (password is `android`), so you can use it instead of [creating a new one](https://youtu.be/dbLpA2YB6vU?t=273).
-    + No need to [create this script](https://youtu.be/dbLpA2YB6vU?t=1089)
+    + Skip the instructions related to ***Unity Gaming Services***
+    + We provide a [Keystore](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client/Keystore//TODOlink) (password: `android`). Use this instead of [creating a new one](https://youtu.be/dbLpA2YB6vU?t=273)
+    + Skip the step to [create this script](https://youtu.be/dbLpA2YB6vU?t=1089)
 
 ## Set up Openfort
 
 1. #### [Add a Contract](https://dashboard.openfort.xyz/assets/new)
-   This sample requires a contract to run. We're using [0x38090d1636069c0ff1Af6bc1737Fb996B7f63AC0](https://mumbai.polygonscan.com/address/0x38090d1636069c0ff1Af6bc1737Fb996B7f63AC0) (NFT contract deployed in 80001 Mumbai). To follow this guide, you can use it too:
+   This sample requires a contract to run. We use [0x38090d1636069c0ff1Af6bc1737Fb996B7f63AC0](https://mumbai.polygonscan.com/address/0x38090d1636069c0ff1Af6bc1737Fb996B7f63AC0) (NFT contract deployed in 80001 Mumbai). You can use this for the guide:
 
-   <img src="docs-img/image-1.png" alt="Policy rule image" width="500"/>
+   ![Policy rule image](docs-img/image-1.png)
 
 2. #### [Add a Policy](https://dashboard.openfort.xyz/policies/new)
-   In this scenario, we aim to cover the gas fees for our users, so we set a new gas policy:
+   We aim to cover gas fees for users. Set a new gas policy:
 
-   <img src="docs-img/image.png" alt="Policy rule image" width="500"/>
+   ![Policy rule image](docs-img/image.png)
 
-   Now add a rule for the policy to work for our contract:
+   Now, add a rule so our contract uses this policy:
 
-   <img src="docs-img/image-2.png" alt="Policy rule image" width="500"/>
+   ![Policy rule image](docs-img/image-2.png)
 
-## Deploy Azure backend
+## Deploy Azure Backend
 Open [azure-backend](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/azure-backend) with VS Code and sign in to Azure:
 
-![Alt text](docs-img/image-4.png)
+![Azure backend image](docs-img/image-4.png)
 
-Make sure you have your Function App there (in our case it's openfort-playfab):
+Ensure your Function App (here, it's "openfort-playfab") is listed:
 
-![Alt text](docs-img/image-5.png)
+![Function App image](docs-img/image-5.png)
 
-Open the terminal and run:
+In the terminal, run:
 ```
 npm install
 ```
