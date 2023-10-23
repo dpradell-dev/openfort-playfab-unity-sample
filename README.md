@@ -83,7 +83,7 @@ Next we will add this url (and all the others) to PlayFab in order to be able to
 
     ![Alt text](image-12.png)
 
-    We already have our functions registered so to do that, select ***Register function*** and add the function name and its url:
+    We already have our functions registered. In order to do that, select ***Register function*** and add the function name and its url:
 
     ![Alt text](image-13.png)
 
