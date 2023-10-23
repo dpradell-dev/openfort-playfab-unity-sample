@@ -57,69 +57,68 @@ In the terminal, run:
 npm install
 ```
 
-In the explorer, right click on to one function and choose ***Deploy to Function App***:
+In the explorer, right-click on a function and select ***Deploy to Function App***:
 
-![Alt text](docs-img/image-6.png)
+![Deploy to Function App](docs-img/image-6.png)
 
-Select your Function App:
+Next, choose your Function App:
 
-![Alt text](docs-img/image-7.png)
+![Select Function App](docs-img/image-7.png)
 
-Finally choose ***Deploy***:
+Then, click on ***Deploy***:
 
-![Alt text](docs-img/image-8.png)
+![Deploy Confirmation](docs-img/image-8.png)
 
-Go to your [Azure Portal](https://portal.azure.com/#home) and select your Function App. You should see all the functions there:
+Navigate to your [Azure Portal](https://portal.azure.com/#home) and open your Function App. You should see all the functions listed:
 
-![Alt text](docs-img/image-10.png)
+![Functions List](docs-img/image-10.png)
 
-Select one of them and choose ***Get Function Url***:
+Click on any function and select ***Get Function Url***:
 
-![Alt text](docs-img/image-11.png)
+![Get Function URL](docs-img/image-11.png)
 
-Next we will add this url (and all the others) to PlayFab in order to be able to access our Azure Functions from PlayFab.
+Subsequently, add this URL (along with all others) to PlayFab to enable access to our Azure Functions from within PlayFab.
 
 ## Set up PlayFab Title
 
 1. #### Register Azure Functions
-    Go to the [PlayFab developer dashboard](https://developer.playfab.com/), select your title and select ***Automation***:
+    Visit the [PlayFab developer dashboard](https://developer.playfab.com/), choose your title, and click on ***Automation***:
 
-    ![Alt text](docs-img/image-12.png)
+    ![Automation Selection](docs-img/image-12.png)
 
-    We already have our functions registered. In order to do that, select ***Register function*** and add the function name and its url:
+    Our functions are already registered. To do the same, click ***Register function*** and provide the function name along with its URL:
 
-    ![Alt text](docs-img/image-13.png)
+    ![Function Registration](docs-img/image-13.png)
 
-    Repeat this step to register all the deployed functions.
-    
+    Repeat this for all deployed functions.
+
 2. #### Install Google Add-on
-    Go to ***Add-ons*** and select ***Google***:
+    Navigate to ***Add-ons*** and choose ***Google***:
 
-    ![Alt text](docs-img/image-15.png)
+    ![Google Add-on Selection](docs-img/image-15.png)
 
-    Go to the [Google Cloud APIs Credentials dashboard](https://console.cloud.google.com/apis/credentials) and select the arrow icon of your ***OAuth Web Application Client***:
+    Then, visit the [Google Cloud APIs Credentials dashboard](https://console.cloud.google.com/apis/credentials) and click on the arrow icon next to your ***OAuth Web Application Client***:
 
-    ![Alt text](docs-img/image-16.png)
+    ![OAuth Web Application Client](docs-img/image-16.png)
 
-    Copy the ***Client ID*** and the ***Client secret***:
+    Copy both the ***Client ID*** and ***Client Secret***:
 
-    ![Alt text](docs-img/image-17.png)
+    ![Client Details](docs-img/image-17.png)
 
-    Back to the PlayFab dashboard, paste those fields into ***Google OAuth Client ID*** and ***Google OAuth Client Secret*** and choose ***Install Google***:
+    Return to the PlayFab dashboard, paste these details into the ***Google OAuth Client ID*** and ***Google OAuth Client Secret*** fields, and click ***Install Google***:
 
-    ![Alt text](docs-img/image-18.png)
+    ![Google Installation](docs-img/image-18.png)
 
-2. #### Add PlayFab OAuth redirect URL 
+3. #### Add PlayFab OAuth Redirect URL
+    For this, go to the [Google Cloud APIs Credentials dashboard](https://console.cloud.google.com/apis/credentials). Here, select your *Web application*:
 
-    This step happens on [Google Cloud APIs Credentials dashboard](https://console.cloud.google.com/apis/credentials). Once there select your *Web application*:
+    ![Web Application Selection](docs-img/image-19.png)
 
-    ![Alt text](docs-img/image-19.png)
-
-    On ***Authorized redirect URIs*** add the following url and choose ***Save***:
+    In the ***Authorized redirect URIs*** section, add the URL below and click ***Save***:
     ```
     https://oauth.playfab.com/oauth2/google
     ```
-    ![Alt text](docs-img/image-20.png)
+    ![Authorized Redirect URIs](docs-img/image-20.png)
 
 ## Set up Azure backend
 Our Azure backend environment will need some environment variables from both PlayFab and Openfort so let's add those.
