@@ -35,11 +35,6 @@ By integrating the [Openfort SDK](https://github.com/openfort-xyz/openfort-node)
 
    <img src="image-2.png" alt="Policy rule image" width="500"/>
 
-3. #### [Get Publishable key](https://dashboard.openfort.xyz/apikeys)
-    Copy this key, we will need it later:
-
-    ![Alt text](image-3.png)
-
 ## Deploy Azure backend
 Open [azure-backend](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/azure-backend) with VS Code and sign in to Azure:
 
@@ -128,7 +123,7 @@ Our Azure backend environment will need some environment variables from both Pla
 
     Fill empty fields with:
     + Name: `OF_API_KEY`
-    + Value: [Get Publishable key](https://dashboard.openfort.xyz/apikeys)
+    + Value: [Get **Secret key**](https://dashboard.openfort.xyz/apikeys)
 
 2. #### Add PlayFab environment variables
 
