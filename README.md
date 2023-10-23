@@ -118,14 +118,24 @@ Next we will add this url (and all the others) to PlayFab in order to be able to
     ```
     ![Alt text](image-20.png)
 
+## Set up Azure backend
+Our Azure backend environment will need some environment variables from both PlayFab and Openfort so let's add those.
 
+1. #### Add Openfort environment variables
+    Go to the [Azure Portal](https://portal.azure.com/#home) and select your Function App. Under ***Configuration*** choose ***New application setting***:
 
+    ![Alt text](image-21.png)
+
+    Fill empty fields with:
+    + Name: `OF_API_KEY`
+    + Value: [Get Publishable key](https://dashboard.openfort.xyz/apikeys)
+
+2. #### Add PlayFab environment variables
 
 
 //TODO
 + Add PlayFab title to Unity
 + Add PLAYFAB_API_KEY and PLAYFAB_SECRET_KEY to Azure
-+ Register functions to Playfab title
 + Add Openfort API Key to Azure config
 + Add Openfort ContractAddress to Azure config
 + keystore
