@@ -146,6 +146,26 @@ Our Azure backend environment will need some environment variables from both Pla
 
     ![Alt text](image-25.png)
 
+    Under ***Secret Keys***, copy your ***Secret key***:
+
+    ![Alt text](image-26.png)
+
+    Now go to the [Azure Portal](https://portal.azure.com/#home) and select your Function App. Under ***Configuration*** choose ***New application setting***:
+
+    Fill the empty fields with:
+    + Name: `PLAYFAB_TITLE_ID`
+    + Value: [Your Title ID]
+
+    Repeat the process to add another application setting:
+    + Name: `PLAYFAB_SECRET_KEY`
+    + Value: [Your Secret Key]
+
+    You should see the configuration panel like this. Choose ***Save***:
+
+    ![Alt text](image-27.png)
+
+    
+
 //TODO
 + Add PlayFab title to Unity
 + Add PLAYFAB_API_KEY and PLAYFAB_SECRET_KEY to Azure
