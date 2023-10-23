@@ -24,7 +24,7 @@ By integrating the [Openfort SDK](https://github.com/openfort-xyz/openfort-node)
 + Watch the [video tutorial](https://www.youtube.com/watch?v=dbLpA2YB6vU) on configuring *Google Play Games for Unity* and apply it to [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client). Note that:
     + Google Play Games SDK is already imported to [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client)
     + Skip the instructions related to ***Unity Gaming Services***
-    + We provide a [Keystore](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client/Keystore//TODOlink) (password: `android`). Use this instead of [creating a new one](https://youtu.be/dbLpA2YB6vU?t=273)
+    + We provide a [Keystore](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client/Keystore//TODOlink) (password: `android`). You can use it instead of [creating a new one](https://youtu.be/dbLpA2YB6vU?t=273)
     + Skip the step to [create this script](https://youtu.be/dbLpA2YB6vU?t=1089)
 
 ## Set up Openfort
