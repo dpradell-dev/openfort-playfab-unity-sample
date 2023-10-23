@@ -138,11 +138,13 @@ Our Azure backend environment will need some environment variables from both Pla
     ![Alt text](image-23.png)
 
 2. #### Add PlayFab environment variables
-    Go to the [PlayFab developer dashboard](https://developer.playfab.com/), select your title and choose ***Settings --> Tittle settings***:
+    Go to the [PlayFab developer dashboard](https://developer.playfab.com/), select your title and choose ***Settings wheel --> Tittle settings***:
 
     ![Alt text](image-24.png)
 
+    Under ***API Features***, copy your ***Title ID***:
 
+    ![Alt text](image-25.png)
 
 //TODO
 + Add PlayFab title to Unity
