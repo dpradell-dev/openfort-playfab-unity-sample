@@ -22,7 +22,7 @@ By integrating the [Openfort SDK](https://github.com/openfort-xyz/openfort-node)
     + Open [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client) with Unity 
     + Open [azure-backend](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/azure-backend) with VS Code
 + Watch the [video tutorial](https://www.youtube.com/watch?v=dbLpA2YB6vU) on how to configure *Google Play Games for Unity* and apply it to [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client). Keep in mind that:
-    + Google Play Games SDK already imported into [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client)
+    + Google Play Games SDK is already imported to [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/unity-client)
     + No need to follow the instruction related to ***Unity Gaming Services***
     + No need to [create the script](https://youtu.be/dbLpA2YB6vU?t=1089)
 
