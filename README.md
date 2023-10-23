@@ -150,7 +150,7 @@ Our Azure backend environment will need some environment variables from both Pla
 
     ![Alt text](image-26.png)
 
-    Now go to the [Azure Portal](https://portal.azure.com/#home) and select your Function App. Under ***Configuration*** choose ***New application setting***:
+    Go to the [Azure Portal](https://portal.azure.com/#home) and select your Function App. Under ***Configuration*** choose ***New application setting***:
 
     Fill the empty fields with:
     + Name: `PLAYFAB_TITLE_ID`
@@ -164,13 +164,10 @@ Our Azure backend environment will need some environment variables from both Pla
 
     ![Alt text](image-27.png)
 
-    
+
 
 //TODO
 + Add PlayFab title to Unity
-+ Add PLAYFAB_API_KEY and PLAYFAB_SECRET_KEY to Azure
-+ Add Openfort API Key to Azure config
-+ Add Openfort ContractAddress to Azure config
 + keystore
 
 ## Google Play
