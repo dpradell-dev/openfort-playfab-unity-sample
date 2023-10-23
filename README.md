@@ -169,12 +169,13 @@ Open [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sampl
 
 1. #### Set up PlayFab SDK
     In the ***Project*** tab, search for 'PlayFabSharedSettings' and set your PlayFab Title ID:
-    
+
+    ![Alt text](image-28.png)
 
 2. #### Set up Google Play Games SDK
 
     //TODO
-    This will let us use Google Play Games to authenticate our users via PlayFab (remember [Google Add-on](https://github.com/dpradell-dev/openfort-playfab-unity-sample#install-google-add-on)) when our game/application is running on Android. If not, we will use PlayFab standard authentication.
+    This will let us use Google Play Games to authenticate our users via PlayFab (remember [Google Add-on](https://github.com/dpradell-dev/openfort-playfab-unity-sample#install-google-add-on)) //TODOlink when our game/application is running on Android. If not, we will use PlayFab standard authentication.
 
 //TODO
 + Set up Google Play SDK
