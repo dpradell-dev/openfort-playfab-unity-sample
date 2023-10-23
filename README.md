@@ -196,7 +196,7 @@ To begin, open [unity-client](https://github.com/dpradell-dev/openfort-playfab-u
 
 ## Test in Editor
 
-Start the game, opt for ***Register***, provide an email and password, then click ***Register*** again. This scene should appear:
+Play ***Login*** scene, opt for ***Register***, provide an email and password, then click ***Register*** again. This scene should appear:
 
 ![Game Scene](docs-img/image-32.png)
 
