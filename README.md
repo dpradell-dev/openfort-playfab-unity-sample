@@ -32,25 +32,25 @@ By integrating the [Openfort SDK](https://github.com/openfort-xyz/openfort-node)
 1. #### [Add a Contract](https://dashboard.openfort.xyz/assets/new)
    This sample requires a contract to run. We're using [0x38090d1636069c0ff1Af6bc1737Fb996B7f63AC0](https://mumbai.polygonscan.com/address/0x38090d1636069c0ff1Af6bc1737Fb996B7f63AC0) (NFT contract deployed in 80001 Mumbai). To follow this guide, you can use it too:
 
-   <img src="image-1.png" alt="Policy rule image" width="500"/>
+   <img src="docs-img/image-1.png" alt="Policy rule image" width="500"/>
 
 2. #### [Add a Policy](https://dashboard.openfort.xyz/policies/new)
    In this scenario, we aim to cover the gas fees for our users, so we set a new gas policy:
 
-   <img src="image.png" alt="Policy rule image" width="500"/>
+   <img src="docs-img/image.png" alt="Policy rule image" width="500"/>
 
    Now add a rule for the policy to work for our contract:
 
-   <img src="image-2.png" alt="Policy rule image" width="500"/>
+   <img src="docs-img/image-2.png" alt="Policy rule image" width="500"/>
 
 ## Deploy Azure backend
 Open [azure-backend](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/azure-backend) with VS Code and sign in to Azure:
 
-![Alt text](image-4.png)
+![Alt text](docs-img/image-4.png)
 
 Make sure you have your Function App there (in our case it's openfort-playfab):
 
-![Alt text](image-5.png)
+![Alt text](docs-img/image-5.png)
 
 Open the terminal and run:
 ```
@@ -59,23 +59,23 @@ npm install
 
 In the explorer, right click on to one function and choose ***Deploy to Function App***:
 
-![Alt text](image-6.png)
+![Alt text](docs-img/image-6.png)
 
 Select your Function App:
 
-![Alt text](image-7.png)
+![Alt text](docs-img/image-7.png)
 
 Finally choose ***Deploy***:
 
-![Alt text](image-8.png)
+![Alt text](docs-img/image-8.png)
 
 Go to your [Azure Portal](https://portal.azure.com/#home) and select your Function App. You should see all the functions there:
 
-![Alt text](image-10.png)
+![Alt text](docs-img/image-10.png)
 
 Select one of them and choose ***Get Function Url***:
 
-![Alt text](image-11.png)
+![Alt text](docs-img/image-11.png)
 
 Next we will add this url (and all the others) to PlayFab in order to be able to access our Azure Functions from PlayFab.
 
@@ -84,42 +84,42 @@ Next we will add this url (and all the others) to PlayFab in order to be able to
 1. #### Register Azure Functions
     Go to the [PlayFab developer dashboard](https://developer.playfab.com/), select your title and select ***Automation***:
 
-    ![Alt text](image-12.png)
+    ![Alt text](docs-img/image-12.png)
 
     We already have our functions registered. In order to do that, select ***Register function*** and add the function name and its url:
 
-    ![Alt text](image-13.png)
+    ![Alt text](docs-img/image-13.png)
 
     Repeat this step to register all the deployed functions.
     
 2. #### Install Google Add-on
     Go to ***Add-ons*** and select ***Google***:
 
-    ![Alt text](image-15.png)
+    ![Alt text](docs-img/image-15.png)
 
     Go to the [Google Cloud APIs Credentials dashboard](https://console.cloud.google.com/apis/credentials) and select the arrow icon of your ***OAuth Web Application Client***:
 
-    ![Alt text](image-16.png)
+    ![Alt text](docs-img/image-16.png)
 
     Copy the ***Client ID*** and the ***Client secret***:
 
-    ![Alt text](image-17.png)
+    ![Alt text](docs-img/image-17.png)
 
     Back to the PlayFab dashboard, paste those fields into ***Google OAuth Client ID*** and ***Google OAuth Client Secret*** and choose ***Install Google***:
 
-    ![Alt text](image-18.png)
+    ![Alt text](docs-img/image-18.png)
 
 2. #### Add PlayFab OAuth redirect URL 
 
     This step happens on [Google Cloud APIs Credentials dashboard](https://console.cloud.google.com/apis/credentials). Once there select your *Web application*:
 
-    ![Alt text](image-19.png)
+    ![Alt text](docs-img/image-19.png)
 
     On ***Authorized redirect URIs*** add the following url and choose ***Save***:
     ```
     https://oauth.playfab.com/oauth2/google
     ```
-    ![Alt text](image-20.png)
+    ![Alt text](docs-img/image-20.png)
 
 ## Set up Azure backend
 Our Azure backend environment will need some environment variables from both PlayFab and Openfort so let's add those.
@@ -127,7 +127,7 @@ Our Azure backend environment will need some environment variables from both Pla
 1. #### Add Openfort environment variables
     Go to the [Azure Portal](https://portal.azure.com/#home) and select your Function App. Under ***Configuration*** choose ***New application setting***:
 
-    ![Alt text](image-21.png)
+    ![Alt text](docs-img/image-21.png)
 
     Fill the empty fields with:
     + Name: `OF_API_KEY`
@@ -143,20 +143,20 @@ Our Azure backend environment will need some environment variables from both Pla
 
     You should see the configuration panel like this. Choose ***Save***:
     
-    ![Alt text](image-23.png)
+    ![Alt text](docs-img/image-23.png)
 
 2. #### Add PlayFab environment variables
     Go to the [PlayFab developer dashboard](https://developer.playfab.com/), select your title and choose ***Settings wheel --> Tittle settings***:
 
-    ![Alt text](image-24.png)
+    ![Alt text](docs-img/image-24.png)
 
     Under ***API Features***, copy your ***Title ID***:
 
-    ![Alt text](image-29.png)
+    ![Alt text](docs-img/image-29.png)
 
     Under ***Secret Keys***, copy your ***Secret key***:
 
-    ![Alt text](image-26.png)
+    ![Alt text](docs-img/image-26.png)
 
     Go to the [Azure Portal](https://portal.azure.com/#home) and select your Function App. Under ***Configuration*** choose ***New application setting***:
 
@@ -170,7 +170,7 @@ Our Azure backend environment will need some environment variables from both Pla
 
     You should see the configuration panel like this. Choose ***Save***:
 
-    ![Alt text](image-27.png)
+    ![Alt text](docs-img/image-27.png)
 
 ## Set up Unity client
 For your information, this Unity sample project already comes with:
@@ -182,39 +182,39 @@ Open [unity-client](https://github.com/dpradell-dev/openfort-playfab-unity-sampl
 1. #### Set up PlayFab SDK
     In the ***Project*** tab, search for `PlayFabSharedSettings` and set your PlayFab ***Title ID***:
 
-    ![Alt text](image-28.png)
+    ![Alt text](docs-img/image-28.png)
 
 2. #### Set up Google Play Games SDK
     You should have the Google Play Games SDK set-up by following the [required tutorial](//TODOlink), but go to ***Window --> Google Play Games --> Setup --> Android setup*** to confirm you have these fields correctly filled:
 
-    ![Alt text](image-30.png)
+    ![Alt text](docs-img/image-30.png)
 
-    ![Alt text](image-31.png)
+    ![Alt text](docs-img/image-31.png)
 
     This will let us use Google Play Games to authenticate our users via PlayFab (remember [Google Add-on](https://github.com/dpradell-dev/openfort-playfab-unity-sample#install-google-add-on//TODOlink)) when our game/application is running on Android. If not, we will use PlayFab standard authentication.
 
 ## Run the game in Editor
 ***Play*** the game, choose ***Register*** --> Enter some email and password --> choose ***Register*** again and you will encounter this scene:
 
-![Alt text](image-32.png)
+![Alt text](docs-img/image-32.png)
 
 Choose ***Mint*** and after some time you will see the representation of your minted NFT:
 
-![Alt text](image-33.png)
+![Alt text](docs-img/image-33.png)
 
 If you go to your [Openfort Players dashboard](https://dashboard.openfort.xyz/players), you will see a new player has been created. Select it:
 
-![Alt text](image-34.png)
+![Alt text](docs-img/image-34.png)
 
 There you will see that a `mint` transaction has been completed successfully:
 
-![Alt text](image-35.png)
+![Alt text](docs-img/image-35.png)
 
-You can also select your **Mumbai account** and under ***ERC-721 Token Txns*** you'll see the transaction:
+You can also select your **Mumbai Account** and under ***ERC-721 Token Txns*** you'll see the transaction:
 
-![Alt text](image-36.png)
+![Alt text](docs-img/image-36.png)
 
-![Alt text](image-37.png)
+![Alt text](docs-img/image-37.png)
 
 ## Build the game to Android
 
