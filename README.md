@@ -133,6 +133,10 @@ Our Azure backend environment will need some environment variables from both Pla
     + Name: `OF_SPONSOR_POLICY`
     + Value: [Get **Policy API ID**](https://dashboard.openfort.xyz/policies)
 
+    You should see the configuration panel like this. Choose ***Save***:
+    
+    ![Alt text](image-23.png)
+
 2. #### Add PlayFab environment variables
 
 
