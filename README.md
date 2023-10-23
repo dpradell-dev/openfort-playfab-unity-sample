@@ -68,8 +68,17 @@ Finally choose ***Deploy***:
 
 Go to your [Azure Portal](https://portal.azure.com/#home) and click on your Function App. You should see all the functions there:
 
-![Alt text](image-9.png)
+![Alt text](image-10.png)
 
+Select one of them and choose ***Get Function Url***:
+
+![Alt text](image-11.png)
+
+Next we will add this url (and all the others) to PlayFab in order to be able to access our Azure Functions from PlayFab.
+
+## Set up PlayFab Title
+
+Go to the PlayFab dashboard, select your title and select ***Automation***:
 
 
 
