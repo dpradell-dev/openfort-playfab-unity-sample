@@ -88,7 +88,7 @@ Subsequently, add this URL (along with all others) to PlayFab to enable access t
 
     Our functions are already registered. To do the same, click ***Register function*** and provide the function name along with its URL:
 
-    ![Function Registration](docs-img/image-13.png)
+    <img src="docs-img/image-13.png" width="500">
 
     Repeat this for all deployed functions.
 
@@ -103,11 +103,11 @@ Subsequently, add this URL (along with all others) to PlayFab to enable access t
 
     Copy both the ***Client ID*** and ***Client Secret***:
 
-    ![Client Details](docs-img/image-17.png)
+    <img src="docs-img/image-17.png" width="500">
 
     Return to the PlayFab dashboard, paste these details into the ***Google OAuth Client ID*** and ***Google OAuth Client Secret*** fields, and click ***Install Google***:
 
-    ![Google Installation](docs-img/image-18.png)
+    <img src="docs-img/image-18.png" width="500">
 
 3. #### Add PlayFab OAuth Redirect URL
     For this, go to the [Google Cloud APIs Credentials dashboard](https://console.cloud.google.com/apis/credentials). Here, select your *Web application*:
@@ -118,7 +118,7 @@ Subsequently, add this URL (along with all others) to PlayFab to enable access t
     ```
     https://oauth.playfab.com/oauth2/google
     ```
-    ![Authorized Redirect URIs](docs-img/image-20.png)
+    <img src="docs-img/image-20.png" width="500">
 
 ## Set up Azure Backend
 
@@ -128,7 +128,7 @@ Our Azure backend requires environment variables from both PlayFab and Openfort.
     - Navigate to the [Azure Portal](https://portal.azure.com/#home) and select your Function App.
     - Under ***Configuration***, click ***New application setting***:
       
-      ![Azure Configuration](docs-img/image-21.png)
+      <img src="docs-img/image-21.png" width="500">
 
     - Provide the following details:
       + Name: `OF_API_KEY`
@@ -144,16 +144,16 @@ Our Azure backend requires environment variables from both PlayFab and Openfort.
 
     After adding these, your configuration panel should resemble the following. Click ***Save***:
     
-    ![Configuration Save](docs-img/image-23.png)
+    <img src="docs-img/image-23.png" width="500">
 
 2. #### Add PlayFab Environment Variables
     - Visit the [PlayFab developer dashboard](https://developer.playfab.com/), select your title, and navigate to ***Settings wheel --> Title settings***:
 
-      ![PlayFab Settings](docs-img/image-24.png)
+      <img src="docs-img/image-24.png" width="500">
 
     - In the ***API Features*** section, copy your ***Title ID***:
 
-      ![Title ID](docs-img/image-29.png)
+      <img src="docs-img/image-29.png" width="500">
 
     - Under ***Secret Keys***, note down your ***Secret key***:
 
@@ -170,7 +170,7 @@ Our Azure backend requires environment variables from both PlayFab and Openfort.
 
     Your configuration panel should now look like the following. Confirm your changes by clicking ***Save***:
 
-    ![PlayFab Configuration Save](docs-img/image-27.png)
+    <img src="docs-img/image-27.png" width="500">
 
 ## Set up Unity Client
 
@@ -184,13 +184,14 @@ To begin, open [unity-client](https://github.com/dpradell-dev/openfort-playfab-u
     - Navigate to the ***Project*** tab.
     - Search for `PlayFabSharedSettings` and input your PlayFab ***Title ID***:
 
-      ![PlayFab Settings](docs-img/image-28.png)
+      <img src="docs-img/image-28.png" width="500">
 
 2. #### Configure Google Play Games SDK
     - Even if you've set up the Google Play Games SDK following the [required tutorial](//TODOlink), ensure that you've correctly configured all fields by navigating to ***Window --> Google Play Games --> Setup --> Android setup***:
 
       ![Google Play Games Config 1](docs-img/image-30.png)
-      ![Google Play Games Config 2](docs-img/image-31.png)
+      
+      <img src="docs-img/image-31.png" width="500">
 
     By doing this, when the game runs on Android, it will utilize Google Play Games for user authentication via PlayFab. Otherwise, the default PlayFab authentication will be used.
 
@@ -214,7 +215,8 @@ You'll notice that a `mint` transaction has been successfully processed:
 
 Additionally, by choosing your **Mumbai Account** and viewing ***ERC-721 Token Txns***, the transaction is further confirmed:
 
-![Transaction Confirm 1](docs-img/image-36.png)
+<img src="docs-img/image-36.png" width="500">
+
 ![Transaction Confirm 2](docs-img/image-37.png)
 
 ## Test on Android
