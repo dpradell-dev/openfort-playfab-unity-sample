@@ -32,16 +32,16 @@ By integrating the [Openfort SDK](https://github.com/openfort-xyz/openfort-node)
 1. #### [Add a Contract](https://dashboard.openfort.xyz/assets/new)
    This sample requires a contract to run. We use [0x38090d1636069c0ff1Af6bc1737Fb996B7f63AC0](https://mumbai.polygonscan.com/address/0x38090d1636069c0ff1Af6bc1737Fb996B7f63AC0) (NFT contract deployed in 80001 Mumbai). You can use this for the guide:
 
-   ![Policy rule image](docs-img/image-1.png)
+   <img src="docs-img/image-1.png" width="500">
 
 2. #### [Add a Policy](https://dashboard.openfort.xyz/policies/new)
    We aim to cover gas fees for users. Set a new gas policy:
 
-   ![Policy rule image](docs-img/image.png)
+   <img src="docs-img/image.png" width="500">
 
    Now, add a rule so our contract uses this policy:
 
-   ![Policy rule image](docs-img/image-2.png)
+   <img src="docs-img/image-2.png" width="500">
 
 ## Deploy Azure Backend
 Open [azure-backend](https://github.com/dpradell-dev/openfort-playfab-unity-sample/tree/main/azure-backend) with VS Code and sign in to Azure:
