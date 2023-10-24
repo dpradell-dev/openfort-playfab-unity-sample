@@ -9,7 +9,7 @@ By integrating the [Openfort SDK](https://github.com/openfort-xyz/openfort-node)
 
 ## Application Workflow
 
-//TODO graphic
+![Integration workflow](docs-img/openfort-playfab-integration-workflow.png)
 
 ## Prerequisites
 + [Create a PlayFab account and title](https://learn.microsoft.com/en-us/gaming/playfab/gamemanager/quickstart)
